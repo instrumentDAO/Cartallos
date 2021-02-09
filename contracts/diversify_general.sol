@@ -1,8 +1,8 @@
 pragma solidity =0.7.5;
 
 
-import "./openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
-import "./openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 
 contract DiversifyGeneral is ERC20 {
@@ -24,14 +24,14 @@ contract DiversifyGeneral is ERC20 {
 
 
     constructor() ERC20("Diversify General Pool", "DRV-G") public {
-        assets[asset1] = true;
-        assets[asset2] = true;
-        assets[asset3] = true;
-        assets[asset4] = true;
-        assets[asset5] = true;
-        assets[asset6] = true;
-        assets[asset7] = true;
-        assets[asset8] = true;
+        assets[address(asset1)] = true;
+        assets[address(asset2)] = true;
+        assets[address(asset3)] = true;
+        assets[address(asset4)] = true;
+        assets[address(asset5)] = true;
+        assets[address(asset6)] = true;
+        assets[address(asset7)] = true;
+        assets[address(asset8)] = true;
 
         assetPerDiversifyToken[asset1] = 10 * weiUnits; //10 tokens to 1
         assetPerDiversifyToken[asset2] = 10 * weiUnits; //10 tokens to 1
@@ -44,7 +44,7 @@ contract DiversifyGeneral is ERC20 {
 
     }
 
-    function mint(uint256 amount){
+    function mint(uint256 amount) public{
         asset1.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset1] * amount) / weiUnits);
         asset2.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset2] * amount) / weiUnits);
         asset3.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset3] * amount) / weiUnits);
@@ -56,7 +56,7 @@ contract DiversifyGeneral is ERC20 {
         _mint(msg.sender, amount);
     }
 
-    function burn(uint256 amount){
+    function burn(uint256 amount) public {
         require(balanceOf(msg.sender)> amount);
         _burn(msg.sender, amount);
         asset1.transfer(msg.sender, (assetPerDiversifyToken[asset1] * amount) / weiUnits);
