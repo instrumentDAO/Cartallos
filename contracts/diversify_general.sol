@@ -24,6 +24,23 @@ contract DiversifyGeneral is ERC20 {
 
 
     constructor() ERC20("Diversify General Pool", "DRV-G") public {
+        assets[asset1] = true;
+        assets[asset2] = true;
+        assets[asset3] = true;
+        assets[asset4] = true;
+        assets[asset5] = true;
+        assets[asset6] = true;
+        assets[asset7] = true;
+        assets[asset8] = true;
+
+        assetPerDiversifyToken[asset1] = 10 * weiUnits; //10 tokens to 1
+        assetPerDiversifyToken[asset2] = 10 * weiUnits; //10 tokens to 1
+        assetPerDiversifyToken[asset3] = 10 * weiUnits; //10 tokens to 1
+        assetPerDiversifyToken[asset4] = 10 * weiUnits; //10 tokens to 1
+        assetPerDiversifyToken[asset5] = 10 * weiUnits; //10 tokens to 1
+        assetPerDiversifyToken[asset6] = 10 * weiUnits; //10 tokens to 1
+        assetPerDiversifyToken[asset7] = 10 * weiUnits; //10 tokens to 1
+        assetPerDiversifyToken[asset8] = 10 * weiUnits; //10 tokens to 1
 
     }
 
