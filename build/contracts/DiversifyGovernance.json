@@ -283,34 +283,34 @@
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "148:296:2:-:0;;;247:19;228:38;;373:68;;;;;;;;;;1958:145:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2040:5;2032;:13;;;;;;;;;;;;:::i;:::-;;2065:7;2055;:17;;;;;;;;;;;;:::i;:::-;;2094:2;2082:9;;:14;;;;;;;;;;;;;;;;;;1958:145;;148:296:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;",
-  "deployedSourceMap": "148:296:2:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2168:89:4;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4244:166;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;3235:106;;;:::i;:::-;;;;;;;;;;;;;;;;;;;4877:317;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;3086:89;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;5589:215;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;3399:125;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2370:93;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6291:266;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;3727:172;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;3957:149;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2168:89;2213:13;2245:5;2238:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2168:89;:::o;4244:166::-;4327:4;4343:39;4352:12;:10;:12::i;:::-;4366:7;4375:6;4343:8;:39::i;:::-;4399:4;4392:11;;4244:166;;;;:::o;3235:106::-;3296:7;3322:12;;3315:19;;3235:106;:::o;4877:317::-;4983:4;4999:36;5009:6;5017:9;5028:6;4999:9;:36::i;:::-;5045:121;5054:6;5062:12;:10;:12::i;:::-;5076:89;5114:6;5076:89;;;;;;;;;;;;;;;;;:11;:19;5088:6;5076:19;;;;;;;;;;;;;;;:33;5096:12;:10;:12::i;:::-;5076:33;;;;;;;;;;;;;;;;:37;;:89;;;;;:::i;:::-;5045:8;:121::i;:::-;5183:4;5176:11;;4877:317;;;;;:::o;3086:89::-;3135:5;3159:9;;;;;;;;;;;3152:16;;3086:89;:::o;5589:215::-;5677:4;5693:83;5702:12;:10;:12::i;:::-;5716:7;5725:50;5764:10;5725:11;:25;5737:12;:10;:12::i;:::-;5725:25;;;;;;;;;;;;;;;:34;5751:7;5725:34;;;;;;;;;;;;;;;;:38;;:50;;;;:::i;:::-;5693:8;:83::i;:::-;5793:4;5786:11;;5589:215;;;;:::o;3399:125::-;3473:7;3499:9;:18;3509:7;3499:18;;;;;;;;;;;;;;;;3492:25;;3399:125;;;:::o;2370:93::-;2417:13;2449:7;2442:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2370:93;:::o;6291:266::-;6384:4;6400:129;6409:12;:10;:12::i;:::-;6423:7;6432:96;6471:15;6432:96;;;;;;;;;;;;;;;;;:11;:25;6444:12;:10;:12::i;:::-;6432:25;;;;;;;;;;;;;;;:34;6458:7;6432:34;;;;;;;;;;;;;;;;:38;;:96;;;;;:::i;:::-;6400:8;:129::i;:::-;6546:4;6539:11;;6291:266;;;;:::o;3727:172::-;3813:4;3829:42;3839:12;:10;:12::i;:::-;3853:9;3864:6;3829:9;:42::i;:::-;3888:4;3881:11;;3727:172;;;;:::o;3957:149::-;4046:7;4072:11;:18;4084:5;4072:18;;;;;;;;;;;;;;;:27;4091:7;4072:27;;;;;;;;;;;;;;;;4065:34;;3957:149;;;;:::o;598:104:6:-;651:15;685:10;678:17;;598:104;:::o;9355:340:4:-;9473:1;9456:19;;:5;:19;;;;9448:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9553:1;9534:21;;:7;:21;;;;9526:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9635:6;9605:11;:18;9617:5;9605:18;;;;;;;;;;;;;;;:27;9624:7;9605:27;;;;;;;;;;;;;;;:36;;;;9672:7;9656:32;;9665:5;9656:32;;;9681:6;9656:32;;;;;;;;;;;;;;;;;;9355:340;;;:::o;7031:530::-;7154:1;7136:20;;:6;:20;;;;7128:70;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7237:1;7216:23;;:9;:23;;;;7208:71;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7290:47;7311:6;7319:9;7330:6;7290:20;:47::i;:::-;7368:71;7390:6;7368:71;;;;;;;;;;;;;;;;;:9;:17;7378:6;7368:17;;;;;;;;;;;;;;;;:21;;:71;;;;;:::i;:::-;7348:9;:17;7358:6;7348:17;;;;;;;;;;;;;;;:91;;;;7472:32;7497:6;7472:9;:20;7482:9;7472:20;;;;;;;;;;;;;;;;:24;;:32;;;;:::i;:::-;7449:9;:20;7459:9;7449:20;;;;;;;;;;;;;;;:55;;;;7536:9;7519:35;;7528:6;7519:35;;;7547:6;7519:35;;;;;;;;;;;;;;;;;;7031:530;;;:::o;5432:163:3:-;5518:7;5550:1;5545;:6;;5553:12;5537:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5587:1;5583;:5;5576:12;;5432:163;;;;;:::o;2690:175::-;2748:7;2767:9;2783:1;2779;:5;2767:17;;2807:1;2802;:6;;2794:46;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2857:1;2850:8;;;2690:175;;;;:::o;10701:92:4:-;;;;:::o",
+  "sourceMap": "148:296:3:-:0;;;247:19;228:38;;373:68;;;;;;;;;;1958:145:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2040:5;2032;:13;;;;;;;;;;;;:::i;:::-;;2065:7;2055;:17;;;;;;;;;;;;:::i;:::-;;2094:2;2082:9;;:14;;;;;;;;;;;;;;;;;;1958:145;;148:296:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;",
+  "deployedSourceMap": "148:296:3:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2168:89:6;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4244:166;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;3235:106;;;:::i;:::-;;;;;;;;;;;;;;;;;;;4877:317;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;3086:89;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;5589:215;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;3399:125;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2370:93;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6291:266;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;3727:172;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;3957:149;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2168:89;2213:13;2245:5;2238:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2168:89;:::o;4244:166::-;4327:4;4343:39;4352:12;:10;:12::i;:::-;4366:7;4375:6;4343:8;:39::i;:::-;4399:4;4392:11;;4244:166;;;;:::o;3235:106::-;3296:7;3322:12;;3315:19;;3235:106;:::o;4877:317::-;4983:4;4999:36;5009:6;5017:9;5028:6;4999:9;:36::i;:::-;5045:121;5054:6;5062:12;:10;:12::i;:::-;5076:89;5114:6;5076:89;;;;;;;;;;;;;;;;;:11;:19;5088:6;5076:19;;;;;;;;;;;;;;;:33;5096:12;:10;:12::i;:::-;5076:33;;;;;;;;;;;;;;;;:37;;:89;;;;;:::i;:::-;5045:8;:121::i;:::-;5183:4;5176:11;;4877:317;;;;;:::o;3086:89::-;3135:5;3159:9;;;;;;;;;;;3152:16;;3086:89;:::o;5589:215::-;5677:4;5693:83;5702:12;:10;:12::i;:::-;5716:7;5725:50;5764:10;5725:11;:25;5737:12;:10;:12::i;:::-;5725:25;;;;;;;;;;;;;;;:34;5751:7;5725:34;;;;;;;;;;;;;;;;:38;;:50;;;;:::i;:::-;5693:8;:83::i;:::-;5793:4;5786:11;;5589:215;;;;:::o;3399:125::-;3473:7;3499:9;:18;3509:7;3499:18;;;;;;;;;;;;;;;;3492:25;;3399:125;;;:::o;2370:93::-;2417:13;2449:7;2442:14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2370:93;:::o;6291:266::-;6384:4;6400:129;6409:12;:10;:12::i;:::-;6423:7;6432:96;6471:15;6432:96;;;;;;;;;;;;;;;;;:11;:25;6444:12;:10;:12::i;:::-;6432:25;;;;;;;;;;;;;;;:34;6458:7;6432:34;;;;;;;;;;;;;;;;:38;;:96;;;;;:::i;:::-;6400:8;:129::i;:::-;6546:4;6539:11;;6291:266;;;;:::o;3727:172::-;3813:4;3829:42;3839:12;:10;:12::i;:::-;3853:9;3864:6;3829:9;:42::i;:::-;3888:4;3881:11;;3727:172;;;;:::o;3957:149::-;4046:7;4072:11;:18;4084:5;4072:18;;;;;;;;;;;;;;;:27;4091:7;4072:27;;;;;;;;;;;;;;;;4065:34;;3957:149;;;;:::o;598:104:8:-;651:15;685:10;678:17;;598:104;:::o;9355:340:6:-;9473:1;9456:19;;:5;:19;;;;9448:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9553:1;9534:21;;:7;:21;;;;9526:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9635:6;9605:11;:18;9617:5;9605:18;;;;;;;;;;;;;;;:27;9624:7;9605:27;;;;;;;;;;;;;;;:36;;;;9672:7;9656:32;;9665:5;9656:32;;;9681:6;9656:32;;;;;;;;;;;;;;;;;;9355:340;;;:::o;7031:530::-;7154:1;7136:20;;:6;:20;;;;7128:70;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7237:1;7216:23;;:9;:23;;;;7208:71;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7290:47;7311:6;7319:9;7330:6;7290:20;:47::i;:::-;7368:71;7390:6;7368:71;;;;;;;;;;;;;;;;;:9;:17;7378:6;7368:17;;;;;;;;;;;;;;;;:21;;:71;;;;;:::i;:::-;7348:9;:17;7358:6;7348:17;;;;;;;;;;;;;;;:91;;;;7472:32;7497:6;7472:9;:20;7482:9;7472:20;;;;;;;;;;;;;;;;:24;;:32;;;;:::i;:::-;7449:9;:20;7459:9;7449:20;;;;;;;;;;;;;;;:55;;;;7536:9;7519:35;;7528:6;7519:35;;;7547:6;7519:35;;;;;;;;;;;;;;;;;;7031:530;;;:::o;5432:163:5:-;5518:7;5550:1;5545;:6;;5553:12;5537:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5587:1;5583;:5;5576:12;;5432:163;;;;;:::o;2690:175::-;2748:7;2767:9;2783:1;2779;:5;2767:17;;2807:1;2802;:6;;2794:46;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2857:1;2850:8;;;2690:175;;;;:::o;10701:92:6:-;;;;:::o",
   "source": "pragma solidity =0.7.5;\r\n\r\n\r\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\r\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\r\n\r\n\r\ncontract DiversifyGovernance is ERC20 {\r\n    using SafeMath for uint256;\r\n\r\n    uint256 weiUnits = 1000000000000000000;\r\n\r\n    mapping(address => bool) assets;\r\n    mapping(IERC20 => uint256) assetPerDiversifyToken;\r\n\r\n\r\n    constructor() ERC20(\"Diversify Governance\", \"DRV\") public {\r\n\r\n    }\r\n}",
   "sourcePath": "/home/darkdark/block_projs/diversify/Contracts/contracts/diversify_governance.sol",
   "ast": {
     "absolutePath": "/home/darkdark/block_projs/diversify/Contracts/contracts/diversify_governance.sol",
     "exportedSymbols": {
       "Context": [
-        1506
+        1786
       ],
       "DiversifyGovernance": [
-        547
+        717
       ],
       "ERC20": [
-        1405
+        1685
       ],
       "IERC20": [
-        1483
+        1763
       ],
       "SafeMath": [
-        902
+        1182
       ]
     },
-    "id": 548,
+    "id": 718,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 520,
+        "id": 690,
         "literals": [
           "solidity",
           "=",
@@ -318,27 +318,27 @@
           ".5"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:2"
+        "src": "0:23:3"
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "id": 521,
+        "id": 691,
         "nodeType": "ImportDirective",
-        "scope": 548,
-        "sourceUnit": 1406,
-        "src": "29:55:2",
+        "scope": 718,
+        "sourceUnit": 1686,
+        "src": "29:55:3",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "id": 522,
+        "id": 692,
         "nodeType": "ImportDirective",
-        "scope": 548,
-        "sourceUnit": 1484,
-        "src": "86:56:2",
+        "scope": 718,
+        "sourceUnit": 1764,
+        "src": "86:56:3",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -347,58 +347,58 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 523,
+              "id": 693,
               "name": "ERC20",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1405,
-              "src": "180:5:2",
+              "referencedDeclaration": 1685,
+              "src": "180:5:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20_$1405",
+                "typeIdentifier": "t_contract$_ERC20_$1685",
                 "typeString": "contract ERC20"
               }
             },
-            "id": 524,
+            "id": 694,
             "nodeType": "InheritanceSpecifier",
-            "src": "180:5:2"
+            "src": "180:5:3"
           }
         ],
         "contractDependencies": [
-          1405,
-          1483,
-          1506
+          1685,
+          1763,
+          1786
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 547,
+        "id": 717,
         "linearizedBaseContracts": [
-          547,
-          1405,
-          1483,
-          1506
+          717,
+          1685,
+          1763,
+          1786
         ],
         "name": "DiversifyGovernance",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "id": 527,
+            "id": 697,
             "libraryName": {
-              "id": 525,
+              "id": 695,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 902,
-              "src": "199:8:2",
+              "referencedDeclaration": 1182,
+              "src": "199:8:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$902",
+                "typeIdentifier": "t_contract$_SafeMath_$1182",
                 "typeString": "library SafeMath"
               }
             },
             "nodeType": "UsingForDirective",
-            "src": "193:27:2",
+            "src": "193:27:3",
             "typeName": {
-              "id": 526,
+              "id": 696,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
-              "src": "212:7:2",
+              "src": "212:7:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -407,12 +407,12 @@
           },
           {
             "constant": false,
-            "id": 530,
+            "id": 700,
             "mutability": "mutable",
             "name": "weiUnits",
             "nodeType": "VariableDeclaration",
-            "scope": 547,
-            "src": "228:38:2",
+            "scope": 717,
+            "src": "228:38:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -420,10 +420,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 528,
+              "id": 698,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
-              "src": "228:7:2",
+              "src": "228:7:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -431,14 +431,14 @@
             },
             "value": {
               "hexValue": "31303030303030303030303030303030303030",
-              "id": 529,
+              "id": 699,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "247:19:2",
+              "src": "247:19:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_1000000000000000000_by_1",
                 "typeString": "int_const 1000000000000000000"
@@ -449,12 +449,12 @@
           },
           {
             "constant": false,
-            "id": 534,
+            "id": 704,
             "mutability": "mutable",
             "name": "assets",
             "nodeType": "VariableDeclaration",
-            "scope": 547,
-            "src": "275:31:2",
+            "scope": 717,
+            "src": "275:31:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -462,28 +462,28 @@
               "typeString": "mapping(address => bool)"
             },
             "typeName": {
-              "id": 533,
+              "id": 703,
               "keyType": {
-                "id": 531,
+                "id": 701,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "283:7:2",
+                "src": "283:7:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "275:24:2",
+              "src": "275:24:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                 "typeString": "mapping(address => bool)"
               },
               "valueType": {
-                "id": 532,
+                "id": 702,
                 "name": "bool",
                 "nodeType": "ElementaryTypeName",
-                "src": "294:4:2",
+                "src": "294:4:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_bool",
                   "typeString": "bool"
@@ -494,42 +494,42 @@
           },
           {
             "constant": false,
-            "id": 538,
+            "id": 708,
             "mutability": "mutable",
             "name": "assetPerDiversifyToken",
             "nodeType": "VariableDeclaration",
-            "scope": 547,
-            "src": "313:49:2",
+            "scope": 717,
+            "src": "313:49:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_contract$_IERC20_$1483_$_t_uint256_$",
+              "typeIdentifier": "t_mapping$_t_contract$_IERC20_$1763_$_t_uint256_$",
               "typeString": "mapping(contract IERC20 => uint256)"
             },
             "typeName": {
-              "id": 537,
+              "id": 707,
               "keyType": {
-                "id": 535,
+                "id": 705,
                 "name": "IERC20",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 1483,
-                "src": "321:6:2",
+                "referencedDeclaration": 1763,
+                "src": "321:6:3",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_IERC20_$1483",
+                  "typeIdentifier": "t_contract$_IERC20_$1763",
                   "typeString": "contract IERC20"
                 }
               },
               "nodeType": "Mapping",
-              "src": "313:26:2",
+              "src": "313:26:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_contract$_IERC20_$1483_$_t_uint256_$",
+                "typeIdentifier": "t_mapping$_t_contract$_IERC20_$1763_$_t_uint256_$",
                 "typeString": "mapping(contract IERC20 => uint256)"
               },
               "valueType": {
-                "id": 536,
+                "id": 706,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
-                "src": "331:7:2",
+                "src": "331:7:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -540,12 +540,12 @@
           },
           {
             "body": {
-              "id": 545,
+              "id": 715,
               "nodeType": "Block",
-              "src": "431:10:2",
+              "src": "431:10:3",
               "statements": []
             },
-            "id": 546,
+            "id": 716,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -553,14 +553,14 @@
                 "arguments": [
                   {
                     "hexValue": "44697665727369667920476f7665726e616e6365",
-                    "id": 541,
+                    "id": 711,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "string",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "393:22:2",
+                    "src": "393:22:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_stringliteral_162e8713b6637eee907e3590816f4d465178269083e0ccc8ffce7c5d9aa53f22",
                       "typeString": "literal_string \"Diversify Governance\""
@@ -569,14 +569,14 @@
                   },
                   {
                     "hexValue": "445256",
-                    "id": 542,
+                    "id": 712,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "string",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "417:5:2",
+                    "src": "417:5:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_stringliteral_d13b3f4af7827fac27a8baab007d3ef1407683c8aef9d6ad72374fc26979b44f",
                       "typeString": "literal_string \"DRV\""
@@ -584,74 +584,74 @@
                     "value": "DRV"
                   }
                 ],
-                "id": 543,
+                "id": 713,
                 "modifierName": {
-                  "id": 540,
+                  "id": 710,
                   "name": "ERC20",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1405,
-                  "src": "387:5:2",
+                  "referencedDeclaration": 1685,
+                  "src": "387:5:3",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_ERC20_$1405_$",
+                    "typeIdentifier": "t_type$_t_contract$_ERC20_$1685_$",
                     "typeString": "type(contract ERC20)"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "387:36:2"
+                "src": "387:36:3"
               }
             ],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 539,
+              "id": 709,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "384:2:2"
+              "src": "384:2:3"
             },
             "returnParameters": {
-              "id": 544,
+              "id": 714,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "431:0:2"
+              "src": "431:0:3"
             },
-            "scope": 547,
-            "src": "373:68:2",
+            "scope": 717,
+            "src": "373:68:3",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 548,
-        "src": "148:296:2"
+        "scope": 718,
+        "src": "148:296:3"
       }
     ],
-    "src": "0:444:2"
+    "src": "0:444:3"
   },
   "legacyAST": {
     "absolutePath": "/home/darkdark/block_projs/diversify/Contracts/contracts/diversify_governance.sol",
     "exportedSymbols": {
       "Context": [
-        1506
+        1786
       ],
       "DiversifyGovernance": [
-        547
+        717
       ],
       "ERC20": [
-        1405
+        1685
       ],
       "IERC20": [
-        1483
+        1763
       ],
       "SafeMath": [
-        902
+        1182
       ]
     },
-    "id": 548,
+    "id": 718,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 520,
+        "id": 690,
         "literals": [
           "solidity",
           "=",
@@ -659,27 +659,27 @@
           ".5"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:2"
+        "src": "0:23:3"
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "id": 521,
+        "id": 691,
         "nodeType": "ImportDirective",
-        "scope": 548,
-        "sourceUnit": 1406,
-        "src": "29:55:2",
+        "scope": 718,
+        "sourceUnit": 1686,
+        "src": "29:55:3",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "id": 522,
+        "id": 692,
         "nodeType": "ImportDirective",
-        "scope": 548,
-        "sourceUnit": 1484,
-        "src": "86:56:2",
+        "scope": 718,
+        "sourceUnit": 1764,
+        "src": "86:56:3",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -688,58 +688,58 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 523,
+              "id": 693,
               "name": "ERC20",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1405,
-              "src": "180:5:2",
+              "referencedDeclaration": 1685,
+              "src": "180:5:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20_$1405",
+                "typeIdentifier": "t_contract$_ERC20_$1685",
                 "typeString": "contract ERC20"
               }
             },
-            "id": 524,
+            "id": 694,
             "nodeType": "InheritanceSpecifier",
-            "src": "180:5:2"
+            "src": "180:5:3"
           }
         ],
         "contractDependencies": [
-          1405,
-          1483,
-          1506
+          1685,
+          1763,
+          1786
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 547,
+        "id": 717,
         "linearizedBaseContracts": [
-          547,
-          1405,
-          1483,
-          1506
+          717,
+          1685,
+          1763,
+          1786
         ],
         "name": "DiversifyGovernance",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "id": 527,
+            "id": 697,
             "libraryName": {
-              "id": 525,
+              "id": 695,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 902,
-              "src": "199:8:2",
+              "referencedDeclaration": 1182,
+              "src": "199:8:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$902",
+                "typeIdentifier": "t_contract$_SafeMath_$1182",
                 "typeString": "library SafeMath"
               }
             },
             "nodeType": "UsingForDirective",
-            "src": "193:27:2",
+            "src": "193:27:3",
             "typeName": {
-              "id": 526,
+              "id": 696,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
-              "src": "212:7:2",
+              "src": "212:7:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -748,12 +748,12 @@
           },
           {
             "constant": false,
-            "id": 530,
+            "id": 700,
             "mutability": "mutable",
             "name": "weiUnits",
             "nodeType": "VariableDeclaration",
-            "scope": 547,
-            "src": "228:38:2",
+            "scope": 717,
+            "src": "228:38:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -761,10 +761,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 528,
+              "id": 698,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
-              "src": "228:7:2",
+              "src": "228:7:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -772,14 +772,14 @@
             },
             "value": {
               "hexValue": "31303030303030303030303030303030303030",
-              "id": 529,
+              "id": 699,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
               "kind": "number",
               "lValueRequested": false,
               "nodeType": "Literal",
-              "src": "247:19:2",
+              "src": "247:19:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_rational_1000000000000000000_by_1",
                 "typeString": "int_const 1000000000000000000"
@@ -790,12 +790,12 @@
           },
           {
             "constant": false,
-            "id": 534,
+            "id": 704,
             "mutability": "mutable",
             "name": "assets",
             "nodeType": "VariableDeclaration",
-            "scope": 547,
-            "src": "275:31:2",
+            "scope": 717,
+            "src": "275:31:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -803,28 +803,28 @@
               "typeString": "mapping(address => bool)"
             },
             "typeName": {
-              "id": 533,
+              "id": 703,
               "keyType": {
-                "id": 531,
+                "id": 701,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "283:7:2",
+                "src": "283:7:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "275:24:2",
+              "src": "275:24:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                 "typeString": "mapping(address => bool)"
               },
               "valueType": {
-                "id": 532,
+                "id": 702,
                 "name": "bool",
                 "nodeType": "ElementaryTypeName",
-                "src": "294:4:2",
+                "src": "294:4:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_bool",
                   "typeString": "bool"
@@ -835,42 +835,42 @@
           },
           {
             "constant": false,
-            "id": 538,
+            "id": 708,
             "mutability": "mutable",
             "name": "assetPerDiversifyToken",
             "nodeType": "VariableDeclaration",
-            "scope": 547,
-            "src": "313:49:2",
+            "scope": 717,
+            "src": "313:49:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_contract$_IERC20_$1483_$_t_uint256_$",
+              "typeIdentifier": "t_mapping$_t_contract$_IERC20_$1763_$_t_uint256_$",
               "typeString": "mapping(contract IERC20 => uint256)"
             },
             "typeName": {
-              "id": 537,
+              "id": 707,
               "keyType": {
-                "id": 535,
+                "id": 705,
                 "name": "IERC20",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 1483,
-                "src": "321:6:2",
+                "referencedDeclaration": 1763,
+                "src": "321:6:3",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_IERC20_$1483",
+                  "typeIdentifier": "t_contract$_IERC20_$1763",
                   "typeString": "contract IERC20"
                 }
               },
               "nodeType": "Mapping",
-              "src": "313:26:2",
+              "src": "313:26:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_contract$_IERC20_$1483_$_t_uint256_$",
+                "typeIdentifier": "t_mapping$_t_contract$_IERC20_$1763_$_t_uint256_$",
                 "typeString": "mapping(contract IERC20 => uint256)"
               },
               "valueType": {
-                "id": 536,
+                "id": 706,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
-                "src": "331:7:2",
+                "src": "331:7:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -881,12 +881,12 @@
           },
           {
             "body": {
-              "id": 545,
+              "id": 715,
               "nodeType": "Block",
-              "src": "431:10:2",
+              "src": "431:10:3",
               "statements": []
             },
-            "id": 546,
+            "id": 716,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -894,14 +894,14 @@
                 "arguments": [
                   {
                     "hexValue": "44697665727369667920476f7665726e616e6365",
-                    "id": 541,
+                    "id": 711,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "string",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "393:22:2",
+                    "src": "393:22:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_stringliteral_162e8713b6637eee907e3590816f4d465178269083e0ccc8ffce7c5d9aa53f22",
                       "typeString": "literal_string \"Diversify Governance\""
@@ -910,14 +910,14 @@
                   },
                   {
                     "hexValue": "445256",
-                    "id": 542,
+                    "id": 712,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "string",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "417:5:2",
+                    "src": "417:5:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_stringliteral_d13b3f4af7827fac27a8baab007d3ef1407683c8aef9d6ad72374fc26979b44f",
                       "typeString": "literal_string \"DRV\""
@@ -925,49 +925,49 @@
                     "value": "DRV"
                   }
                 ],
-                "id": 543,
+                "id": 713,
                 "modifierName": {
-                  "id": 540,
+                  "id": 710,
                   "name": "ERC20",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1405,
-                  "src": "387:5:2",
+                  "referencedDeclaration": 1685,
+                  "src": "387:5:3",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_ERC20_$1405_$",
+                    "typeIdentifier": "t_type$_t_contract$_ERC20_$1685_$",
                     "typeString": "type(contract ERC20)"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "387:36:2"
+                "src": "387:36:3"
               }
             ],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 539,
+              "id": 709,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "384:2:2"
+              "src": "384:2:3"
             },
             "returnParameters": {
-              "id": 544,
+              "id": 714,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "431:0:2"
+              "src": "431:0:3"
             },
-            "scope": 547,
-            "src": "373:68:2",
+            "scope": 717,
+            "src": "373:68:3",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 548,
-        "src": "148:296:2"
+        "scope": 718,
+        "src": "148:296:3"
       }
     ],
-    "src": "0:444:2"
+    "src": "0:444:3"
   },
   "compiler": {
     "name": "solc",
@@ -975,7 +975,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2021-02-09T00:31:43.172Z",
+  "updatedAt": "2021-02-09T02:21:37.725Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

@@ -3,9 +3,10 @@ pragma solidity =0.7.5;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract DiversifyGeneral is ERC20 {
+contract DiversifyGeneral is ERC20, Ownable {
     using SafeMath for uint256;
 
     IERC20 asset1;
@@ -18,7 +19,6 @@ contract DiversifyGeneral is ERC20 {
     IERC20 asset8;
 
     uint256 weiUnits = 1000000000000000000;
-
     mapping(address => bool) assets;
     mapping(IERC20 => uint256) assetPerDiversifyToken;
 
@@ -44,15 +44,52 @@ contract DiversifyGeneral is ERC20 {
 
     }
 
+    function setassetTESTINGONLY(address asset, uint256 whichone) public onlyOwner{
+        if(whichone == 1){
+            asset1 = IERC20(asset);
+        }
+        if(whichone == 2){
+            asset2 = IERC20(asset);
+        }
+        if(whichone == 3){
+            asset3 = IERC20(asset);
+        }
+        if(whichone == 4){
+            asset4 = IERC20(asset);
+        }
+        if(whichone == 5){
+            asset5 = IERC20(asset);
+        }
+        if(whichone == 6){
+            asset6 = IERC20(asset);
+        }
+        if(whichone == 7){
+            asset7 = IERC20(asset);
+        }
+        if(whichone == 8){
+            asset8 = IERC20(asset);
+        }
+    }
+
+
+
     function mint(uint256 amount) public{
-        asset1.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset1] * amount) / weiUnits);
-        asset2.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset2] * amount) / weiUnits);
-        asset3.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset3] * amount) / weiUnits);
-        asset4.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset4] * amount) / weiUnits);
-        asset5.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset5] * amount) / weiUnits);
-        asset6.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset6] * amount) / weiUnits);
-        asset7.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset7] * amount) / weiUnits);
-        asset8.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset8] * amount) / weiUnits);
+        bool worked = asset1.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset1] * amount) / weiUnits);
+        require(worked);
+        worked = asset2.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset2] * amount) / weiUnits);
+        require(worked);
+        worked = asset3.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset3] * amount) / weiUnits);
+        require(worked);
+        worked = asset4.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset4] * amount) / weiUnits);
+        require(worked);
+        worked = asset5.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset5] * amount) / weiUnits);
+        require(worked);
+        worked = asset6.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset6] * amount) / weiUnits);
+        require(worked);
+        worked = asset7.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset7] * amount) / weiUnits);
+        require(worked);
+        worked = asset8.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset8] * amount) / weiUnits);
+        require(worked);
         _mint(msg.sender, amount);
     }
 
