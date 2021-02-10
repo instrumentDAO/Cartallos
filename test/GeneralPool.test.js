@@ -145,6 +145,8 @@ contract('Diversify General Token Tests', (accounts) => {
             console.log(number.toString())
             number.should.be.a.bignumber.that.equal(wei2eth);
 
+
+
             
         })
     })
