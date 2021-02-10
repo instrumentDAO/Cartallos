@@ -18,6 +18,7 @@ contract DiversifyGeneral is ERC20, Ownable {
     IERC20 asset7;
     IERC20 asset8;
 
+    uint256 devFeesCollected = 0;
     uint256 gweiUnits = 1000000000;
     mapping(address => bool) assets;
     mapping(IERC20 => uint256) assetPerDiversifyToken;
@@ -97,8 +98,12 @@ contract DiversifyGeneral is ERC20, Ownable {
     }
 
     function burn(uint256 amount) public {
-        require(balanceOf(msg.sender)> amount);
+        require(balanceOf(msg.sender) >= amount, "balance too low");
         _burn(msg.sender, amount);
+        uint256 devfee = amount/1000;
+        amount = amount - devfee;
+        devFeesCollected += devfee;
+
         asset1.transfer(msg.sender, (assetPerDiversifyToken[asset1] * amount) / gweiUnits);
         asset2.transfer(msg.sender, (assetPerDiversifyToken[asset2] * amount) / gweiUnits);
         asset3.transfer(msg.sender, (assetPerDiversifyToken[asset3] * amount) / gweiUnits);

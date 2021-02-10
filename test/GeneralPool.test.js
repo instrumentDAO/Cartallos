@@ -149,5 +149,65 @@ contract('Diversify General Token Tests', (accounts) => {
             number.should.be.a.bignumber.that.equal(web3.utils.toBN('0'));
 
         })
+
+        it('burn correctly gives back assets minus devfee', async () => {
+            let derr1 = await DerpCoin.new()
+            let derr2 = await DerpCoin.new()
+            let derr3 = await DerpCoin.new()
+            let derr4 = await DerpCoin.new()
+            let derr5 = await DerpCoin.new()
+            let derr6 = await DerpCoin.new()
+            let derr7 = await DerpCoin.new()
+            let derr8 = await DerpCoin.new()
+
+            let DiversifyGeneralToken = await DiversifyGeneral.new()
+            await DiversifyGeneralToken.setassetTESTINGONLY(derr1.address, 1, 10 * 1000000000);
+            await DiversifyGeneralToken.setassetTESTINGONLY(derr2.address, 2, 10 * 1000000000);
+            await DiversifyGeneralToken.setassetTESTINGONLY(derr3.address, 3, 10 * 1000000000);
+            await DiversifyGeneralToken.setassetTESTINGONLY(derr4.address, 4, 10 * 1000000000);
+            await DiversifyGeneralToken.setassetTESTINGONLY(derr5.address, 5, 10 * 1000000000);
+            await DiversifyGeneralToken.setassetTESTINGONLY(derr6.address, 6, 10 * 1000000000);
+            await DiversifyGeneralToken.setassetTESTINGONLY(derr7.address, 7, 10 * 1000000000);
+            await DiversifyGeneralToken.setassetTESTINGONLY(derr8.address, 8, 10 * 1000000000);
+
+            await derr1.mint(wei2eth.mul(web3.utils.toBN('10')))
+            let number = await derr1.balanceOf(accounts[0])
+            dprint(number.toString())
+            number.should.be.a.bignumber.that.equal(wei2eth.mul(web3.utils.toBN('10')));
+
+            await derr2.mint(wei2eth.mul(web3.utils.toBN('10')))
+            await derr3.mint(wei2eth.mul(web3.utils.toBN('10')))
+            await derr4.mint(wei2eth.mul(web3.utils.toBN('10')))
+            await derr5.mint(wei2eth.mul(web3.utils.toBN('10')))
+            await derr6.mint(wei2eth.mul(web3.utils.toBN('10')))
+            await derr7.mint(wei2eth.mul(web3.utils.toBN('10')))
+            await derr8.mint(wei2eth.mul(web3.utils.toBN('10')))
+
+            await derr1.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr2.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr3.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr4.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr5.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr6.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr7.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr8.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+
+            await DiversifyGeneralToken.mint(wei2eth);
+
+            number = await DiversifyGeneralToken.balanceOf(accounts[0])
+            dprint("Balance after mint diversify: " + number.toString())
+            number.should.be.a.bignumber.that.equal(wei2eth);
+
+            await DiversifyGeneralToken.burn(wei2eth);
+            number = await DiversifyGeneralToken.balanceOf(accounts[0])
+            dprint("Balance after burn in diversify: " + number.toString())
+            number.should.be.a.bignumber.that.equal(web3.utils.toBN("0"));
+
+            number = await derr1.balanceOf(accounts[0])
+            dprint("Balance after burn in asset1: " + number.toString())
+            number.should.be.a.bignumber.that.equal(wei2eth.mul(web3.utils.toBN('10')).sub(web3.utils.toBN('10000000000000000')));
+
+        })
+
     })
 })
