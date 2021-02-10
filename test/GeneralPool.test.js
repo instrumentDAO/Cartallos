@@ -144,12 +144,7 @@ contract('Diversify General Token Tests', (accounts) => {
             number = await DiversifyGeneralToken.balanceOf(accounts[0])
             console.log(number.toString())
             number.should.be.a.bignumber.that.equal(wei2eth);
-
             
-
-
-
-
         })
     })
 })
