@@ -42,45 +42,7 @@ contract DiversifyGeneral is ERC20, Ownable {
         assetPerDiversifyToken[asset6] = 10 * gweiUnits; //10 tokens to 1
         assetPerDiversifyToken[asset7] = 10 * gweiUnits; //10 tokens to 1
         assetPerDiversifyToken[asset8] = 10 * gweiUnits; //10 tokens to 1
-
     }
-
-    function setassetTESTINGONLY(address asset, uint256 whichone, uint256 ratioXgwei) public onlyOwner{
-        if(whichone == 1){
-            asset1 = IERC20(asset);
-            assetPerDiversifyToken[asset1] = ratioXgwei;
-        }
-        if(whichone == 2){
-            asset2 = IERC20(asset);
-            assetPerDiversifyToken[asset2] = ratioXgwei;
-        }
-        if(whichone == 3){
-            asset3 = IERC20(asset);
-            assetPerDiversifyToken[asset3] = ratioXgwei;
-        }
-        if(whichone == 4){
-            asset4 = IERC20(asset);
-            assetPerDiversifyToken[asset4] = ratioXgwei;
-        }
-        if(whichone == 5){
-            asset5 = IERC20(asset);
-            assetPerDiversifyToken[asset5] = ratioXgwei;
-        }
-        if(whichone == 6){
-            asset6 = IERC20(asset);
-            assetPerDiversifyToken[asset6] = ratioXgwei;
-        }
-        if(whichone == 7){
-            asset7 = IERC20(asset);
-            assetPerDiversifyToken[asset7] = ratioXgwei;
-        }
-        if(whichone == 8){
-            asset8 = IERC20(asset);
-            assetPerDiversifyToken[asset8] = ratioXgwei;
-        }
-    }
-
-
 
     function mint(uint256 amount) public{
         bool success = asset1.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset1] * amount) / gweiUnits);
@@ -114,6 +76,23 @@ contract DiversifyGeneral is ERC20, Ownable {
         asset8.transfer(msg.sender, (assetPerDiversifyToken[asset8] * amount) / gweiUnits);
     }
 
+    function collectDevFunds(uint256 amount) public onlyOwner{
+        require(amount <= devFeesCollected, "Dev fees currently collected are less than the amount collected");
+        devFeesCollected -= amount;
+        asset1.transfer(msg.sender, (assetPerDiversifyToken[asset1] * amount) / gweiUnits);
+        asset2.transfer(msg.sender, (assetPerDiversifyToken[asset2] * amount) / gweiUnits);
+        asset3.transfer(msg.sender, (assetPerDiversifyToken[asset3] * amount) / gweiUnits);
+        asset4.transfer(msg.sender, (assetPerDiversifyToken[asset4] * amount) / gweiUnits);
+        asset5.transfer(msg.sender, (assetPerDiversifyToken[asset5] * amount) / gweiUnits);
+        asset6.transfer(msg.sender, (assetPerDiversifyToken[asset6] * amount) / gweiUnits);
+        asset7.transfer(msg.sender, (assetPerDiversifyToken[asset7] * amount) / gweiUnits);
+        asset8.transfer(msg.sender, (assetPerDiversifyToken[asset8] * amount) / gweiUnits);
+    }
+
+    //---------------------------------------------------------------------------------------
+    // All function below this line are for debugging only and should be removed before deployment
+    //---------------------------------------------------------------------------------------
+
     function uint2str(uint _i) internal pure returns (string memory _uintAsString) {
         if (_i == 0) {
             return "0";
@@ -131,6 +110,49 @@ contract DiversifyGeneral is ERC20, Ownable {
             _i /= 10;
         }
         return string(bstr);
+    }
+
+    function setassetTESTINGONLY(address asset, uint256 whichone, uint256 ratioXgwei) public onlyOwner{
+        if(whichone == 1){
+            asset1 = IERC20(asset);
+            assetPerDiversifyToken[asset1] = ratioXgwei;
+            assets[address(asset1)] = true;
+        }
+        if(whichone == 2){
+            asset2 = IERC20(asset);
+            assetPerDiversifyToken[asset2] = ratioXgwei;
+            assets[address(asset2)] = true;
+        }
+        if(whichone == 3){
+            asset3 = IERC20(asset);
+            assetPerDiversifyToken[asset3] = ratioXgwei;
+            assets[address(asset3)] = true;
+        }
+        if(whichone == 4){
+            asset4 = IERC20(asset);
+            assetPerDiversifyToken[asset4] = ratioXgwei;
+            assets[address(asset4)] = true;
+        }
+        if(whichone == 5){
+            asset5 = IERC20(asset);
+            assetPerDiversifyToken[asset5] = ratioXgwei;
+            assets[address(asset5)] = true;
+        }
+        if(whichone == 6){
+            asset6 = IERC20(asset);
+            assetPerDiversifyToken[asset6] = ratioXgwei;
+            assets[address(asset6)] = true;
+        }
+        if(whichone == 7){
+            asset7 = IERC20(asset);
+            assetPerDiversifyToken[asset7] = ratioXgwei;
+            assets[address(asset7)] = true;
+        }
+        if(whichone == 8){
+            asset8 = IERC20(asset);
+            assetPerDiversifyToken[asset8] = ratioXgwei;
+            assets[address(asset8)] = true;
+        }
     }
 
 }
