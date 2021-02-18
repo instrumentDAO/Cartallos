@@ -1,15 +1,16 @@
 pragma solidity =0.7.5;
 
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "./BEP20/BEP20.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 
 
 
-contract DerpCoin is ERC20 {
+contract DerpCoin is BEP20 {
     using SafeMath for uint256;
 
 
-    constructor() ERC20("DerpCoin", "DERRRR") public {
+    constructor() BEP20("DerpCoin", "DERRRR") public {
 
     }
 

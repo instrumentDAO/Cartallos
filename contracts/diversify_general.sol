@@ -1,30 +1,29 @@
 pragma solidity =0.7.5;
 
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "./BEP20/BEP20.sol";
+import "./BEP20/IBEP20.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 
-
-contract DiversifyGeneral is ERC20, Ownable {
+contract DiversifyGeneral is BEP20{
     using SafeMath for uint256;
 
-    IERC20 asset1;
-    IERC20 asset2;
-    IERC20 asset3;
-    IERC20 asset4;
-    IERC20 asset5;
-    IERC20 asset6;
-    IERC20 asset7;
-    IERC20 asset8;
+    IBEP20 asset1;
+    IBEP20 asset2;
+    IBEP20 asset3;
+    IBEP20 asset4;
+    IBEP20 asset5;
+    IBEP20 asset6;
+    IBEP20 asset7;
+    IBEP20 asset8;
 
     uint256 devFeesCollected = 0;
     uint256 gweiUnits = 1000000000;
     mapping(address => bool) assets;
-    mapping(IERC20 => uint256) assetPerDiversifyToken;
+    mapping(IBEP20 => uint256) assetPerDiversifyToken;
 
 
-    constructor() ERC20("Diversify General Pool", "DRV-G") public {
+    constructor() BEP20("Diversify General Pool", "DRV-G") public {
         assets[address(asset1)] = true;
         assets[address(asset2)] = true;
         assets[address(asset3)] = true;
@@ -114,42 +113,42 @@ contract DiversifyGeneral is ERC20, Ownable {
 
     function setassetTESTINGONLY(address asset, uint256 whichone, uint256 ratioXgwei) public onlyOwner{
         if(whichone == 1){
-            asset1 = IERC20(asset);
+            asset1 = IBEP20(asset);
             assetPerDiversifyToken[asset1] = ratioXgwei;
             assets[address(asset1)] = true;
         }
         if(whichone == 2){
-            asset2 = IERC20(asset);
+            asset2 = IBEP20(asset);
             assetPerDiversifyToken[asset2] = ratioXgwei;
             assets[address(asset2)] = true;
         }
         if(whichone == 3){
-            asset3 = IERC20(asset);
+            asset3 = IBEP20(asset);
             assetPerDiversifyToken[asset3] = ratioXgwei;
             assets[address(asset3)] = true;
         }
         if(whichone == 4){
-            asset4 = IERC20(asset);
+            asset4 = IBEP20(asset);
             assetPerDiversifyToken[asset4] = ratioXgwei;
             assets[address(asset4)] = true;
         }
         if(whichone == 5){
-            asset5 = IERC20(asset);
+            asset5 = IBEP20(asset);
             assetPerDiversifyToken[asset5] = ratioXgwei;
             assets[address(asset5)] = true;
         }
         if(whichone == 6){
-            asset6 = IERC20(asset);
+            asset6 = IBEP20(asset);
             assetPerDiversifyToken[asset6] = ratioXgwei;
             assets[address(asset6)] = true;
         }
         if(whichone == 7){
-            asset7 = IERC20(asset);
+            asset7 = IBEP20(asset);
             assetPerDiversifyToken[asset7] = ratioXgwei;
             assets[address(asset7)] = true;
         }
         if(whichone == 8){
-            asset8 = IERC20(asset);
+            asset8 = IBEP20(asset);
             assetPerDiversifyToken[asset8] = ratioXgwei;
             assets[address(asset8)] = true;
         }
