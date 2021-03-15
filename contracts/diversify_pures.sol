@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity =0.7.5;
 
 
@@ -23,7 +24,7 @@ contract DiversifyPures is BEP20{
     mapping(IBEP20 => uint256) assetPerDiversifyToken;
 
 
-    constructor() BEP20("Diversify General Pool", "DRV-G") public {
+    constructor() BEP20("Diversify General Pool", "DRV-G") {
         assets[address(btc)] = true;
         assets[address(eth)] = true;
         assets[address(wbnb)] = true;
