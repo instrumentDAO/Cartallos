@@ -19,7 +19,7 @@ interface Executor {
     ) external;
 }
 
-contract StakeDaoGovernance is LPTokenWrapper{
+contract DiversifyGovernance is LPTokenWrapper{
     /* Fee collection for any other token */
 
     function seize(IBEP20 _token, uint256 amount) external {
@@ -387,7 +387,6 @@ contract StakeDaoGovernance is LPTokenWrapper{
             emit RewardPaid(msg.sender, reward);
         }
     }
-
 
 /* TODO
 *IMPORTANT*
