@@ -6,8 +6,8 @@ const provider = ganache.provider();
 const web3 = new Web3(provider);
 
 
-const DiversifyGeneral = artifacts.require('DiversifyGeneral')
-const DiversifyGovernance = artifacts.require('DiversifyGovernance')
+const CartallosGeneral = artifacts.require('CartallosGeneral')
+const CartallosGovernance = artifacts.require('CartallosGovernance')
 const DerpCoin = artifacts.require('DerpCoin')
 
 const timeMachine = require('ganache-time-traveler');
@@ -46,7 +46,7 @@ const dprint = function(message){
     }
 }
 
-contract('Diversify General Token Tests', (accounts) => {
+contract('Cartallos General Token Tests', (accounts) => {
 
     describe('Dummy erc20 tests', async () => {
 
@@ -60,15 +60,15 @@ contract('Diversify General Token Tests', (accounts) => {
             let derr7 = await DerpCoin.new()
             let derr8 = await DerpCoin.new()
 
-            let DiversifyGeneralToken = await DiversifyGeneral.new()
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr1.address, 1, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr2.address, 2, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr3.address, 3, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr4.address, 4, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr5.address, 5, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr6.address, 6, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr7.address, 7, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr8.address, 8, 10 * 1000000000);
+            let CartallosGeneralToken = await CartallosGeneral.new()
+            await CartallosGeneralToken.setassetTESTINGONLY(derr1.address, 1, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr2.address, 2, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr3.address, 3, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr4.address, 4, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr5.address, 5, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr6.address, 6, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr7.address, 7, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr8.address, 8, 10 * 1000000000);
 
             await derr1.mint(wei2eth.mul(web3.utils.toBN('10')))
             let number = await derr1.balanceOf(accounts[0])
@@ -83,18 +83,18 @@ contract('Diversify General Token Tests', (accounts) => {
             await derr7.mint(wei2eth.mul(web3.utils.toBN('10')))
             await derr8.mint(wei2eth.mul(web3.utils.toBN('10')))
 
-            await derr1.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr2.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr3.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr4.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr5.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr6.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr7.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr8.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr1.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr2.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr3.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr4.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr5.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr6.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr7.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr8.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
 
-            await DiversifyGeneralToken.mint(wei2eth);
+            await CartallosGeneralToken.mint(wei2eth);
 
-            number = await DiversifyGeneralToken.balanceOf(accounts[0])
+            number = await CartallosGeneralToken.balanceOf(accounts[0])
             dprint(number.toString())
             number.should.be.a.bignumber.that.equal(wei2eth);
         })
@@ -111,15 +111,15 @@ contract('Diversify General Token Tests', (accounts) => {
             let derr7 = await DerpCoin.new()
             let derr8 = await DerpCoin.new()
 
-            let DiversifyGeneralToken = await DiversifyGeneral.new()
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr1.address, 1, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr2.address, 2, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr3.address, 3, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr4.address, 4, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr5.address, 5, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr6.address, 6, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr7.address, 7, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr8.address, 8, 10 * 1000000000);
+            let CartallosGeneralToken = await CartallosGeneral.new()
+            await CartallosGeneralToken.setassetTESTINGONLY(derr1.address, 1, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr2.address, 2, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr3.address, 3, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr4.address, 4, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr5.address, 5, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr6.address, 6, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr7.address, 7, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr8.address, 8, 10 * 1000000000);
 
             await derr1.mint(wei2eth.mul(web3.utils.toBN('20')))
             await derr2.mint(wei2eth.mul(web3.utils.toBN('20')))
@@ -130,21 +130,21 @@ contract('Diversify General Token Tests', (accounts) => {
             await derr7.mint(wei2eth.mul(web3.utils.toBN('20')))
             await derr8.mint(wei2eth.mul(web3.utils.toBN('20')))
 
-            await derr1.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
-            await derr2.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
-            await derr3.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
-            await derr4.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
-            await derr5.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
-            await derr7.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
-            await derr8.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
+            await derr1.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
+            await derr2.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
+            await derr3.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
+            await derr4.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
+            await derr5.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
+            await derr7.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
+            await derr8.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('20')))
 
             await truffleAssert.reverts(
-                DiversifyGeneralToken.mint(wei2eth.mul(web3.utils.toBN('300')))
+                CartallosGeneralToken.mint(wei2eth.mul(web3.utils.toBN('300')))
             )
 
             await logAccountBalances(accounts, 1, derr1)
 
-            number = await DiversifyGeneralToken.balanceOf(accounts[0])
+            number = await CartallosGeneralToken.balanceOf(accounts[0])
             dprint(number.toString())
             number.should.be.a.bignumber.that.equal(web3.utils.toBN('0'));
 
@@ -160,15 +160,15 @@ contract('Diversify General Token Tests', (accounts) => {
             let derr7 = await DerpCoin.new()
             let derr8 = await DerpCoin.new()
 
-            let DiversifyGeneralToken = await DiversifyGeneral.new()
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr1.address, 1, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr2.address, 2, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr3.address, 3, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr4.address, 4, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr5.address, 5, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr6.address, 6, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr7.address, 7, 10 * 1000000000);
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr8.address, 8, 10 * 1000000000);
+            let CartallosGeneralToken = await CartallosGeneral.new()
+            await CartallosGeneralToken.setassetTESTINGONLY(derr1.address, 1, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr2.address, 2, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr3.address, 3, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr4.address, 4, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr5.address, 5, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr6.address, 6, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr7.address, 7, 10 * 1000000000);
+            await CartallosGeneralToken.setassetTESTINGONLY(derr8.address, 8, 10 * 1000000000);
 
             await derr1.mint(wei2eth.mul(web3.utils.toBN('10')))
             let number = await derr1.balanceOf(accounts[0])
@@ -183,24 +183,24 @@ contract('Diversify General Token Tests', (accounts) => {
             await derr7.mint(wei2eth.mul(web3.utils.toBN('10')))
             await derr8.mint(wei2eth.mul(web3.utils.toBN('10')))
 
-            await derr1.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr2.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr3.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr4.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr5.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr6.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr7.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr8.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr1.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr2.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr3.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr4.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr5.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr6.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr7.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr8.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
 
-            await DiversifyGeneralToken.mint(wei2eth);
+            await CartallosGeneralToken.mint(wei2eth);
 
-            number = await DiversifyGeneralToken.balanceOf(accounts[0])
-            dprint("Balance after mint diversify: " + number.toString())
+            number = await CartallosGeneralToken.balanceOf(accounts[0])
+            dprint("Balance after mint cartallos: " + number.toString())
             number.should.be.a.bignumber.that.equal(wei2eth);
 
-            await DiversifyGeneralToken.burn(wei2eth);
-            number = await DiversifyGeneralToken.balanceOf(accounts[0])
-            dprint("Balance after burn in diversify: " + number.toString())
+            await CartallosGeneralToken.burn(wei2eth);
+            number = await CartallosGeneralToken.balanceOf(accounts[0])
+            dprint("Balance after burn in cartallos: " + number.toString())
             number.should.be.a.bignumber.that.equal(web3.utils.toBN("0"));
 
             number = await derr1.balanceOf(accounts[0])
@@ -220,16 +220,16 @@ contract('Diversify General Token Tests', (accounts) => {
             let derr7 = await DerpCoin.new()
             let derr8 = await DerpCoin.new()
             dprint("here1")
-            let DiversifyGeneralToken = await DiversifyGeneral.new({from: accounts[2]})
+            let CartallosGeneralToken = await CartallosGeneral.new({from: accounts[2]})
             dprint("here2")
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr1.address, 1, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr2.address, 2, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr3.address, 3, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr4.address, 4, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr5.address, 5, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr6.address, 6, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr7.address, 7, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
-            await DiversifyGeneralToken.setassetTESTINGONLY(derr8.address, 8, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
+            await CartallosGeneralToken.setassetTESTINGONLY(derr1.address, 1, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
+            await CartallosGeneralToken.setassetTESTINGONLY(derr2.address, 2, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
+            await CartallosGeneralToken.setassetTESTINGONLY(derr3.address, 3, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
+            await CartallosGeneralToken.setassetTESTINGONLY(derr4.address, 4, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
+            await CartallosGeneralToken.setassetTESTINGONLY(derr5.address, 5, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
+            await CartallosGeneralToken.setassetTESTINGONLY(derr6.address, 6, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
+            await CartallosGeneralToken.setassetTESTINGONLY(derr7.address, 7, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
+            await CartallosGeneralToken.setassetTESTINGONLY(derr8.address, 8, 10 * 1000000000, {from: accounts[2], gas: "2000000"});
 
             await derr1.mint(wei2eth.mul(web3.utils.toBN('10')))
             let number = await derr1.balanceOf(accounts[0])
@@ -244,31 +244,31 @@ contract('Diversify General Token Tests', (accounts) => {
             await derr7.mint(wei2eth.mul(web3.utils.toBN('10')))
             await derr8.mint(wei2eth.mul(web3.utils.toBN('10')))
 
-            await derr1.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr2.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr3.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr4.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr5.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr6.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr7.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
-            await derr8.approve(DiversifyGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr1.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr2.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr3.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr4.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr5.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr6.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr7.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
+            await derr8.approve(CartallosGeneralToken.address, wei2eth.mul(web3.utils.toBN('10')))
 
-            await DiversifyGeneralToken.mint(wei2eth);
+            await CartallosGeneralToken.mint(wei2eth);
 
-            number = await DiversifyGeneralToken.balanceOf(accounts[0])
-            dprint("Balance after mint diversify: " + number.toString())
+            number = await CartallosGeneralToken.balanceOf(accounts[0])
+            dprint("Balance after mint cartallos: " + number.toString())
             number.should.be.a.bignumber.that.equal(wei2eth);
 
-            await DiversifyGeneralToken.burn(wei2eth);
-            number = await DiversifyGeneralToken.balanceOf(accounts[0])
-            dprint("Balance after burn in diversify: " + number.toString())
+            await CartallosGeneralToken.burn(wei2eth);
+            number = await CartallosGeneralToken.balanceOf(accounts[0])
+            dprint("Balance after burn in cartallos: " + number.toString())
             number.should.be.a.bignumber.that.equal(web3.utils.toBN("0"));
 
             number = await derr1.balanceOf(accounts[0])
             dprint("Balance after burn in asset1: " + number.toString())
             number.should.be.a.bignumber.that.equal(wei2eth.mul(web3.utils.toBN('10')).sub(web3.utils.toBN('10000000000000000')));
 
-            await DiversifyGeneralToken.collectDevFunds(web3.utils.toBN("1000000000000000"), {from: accounts[2], gas: "2000000"})
+            await CartallosGeneralToken.collectDevFunds(web3.utils.toBN("1000000000000000"), {from: accounts[2], gas: "2000000"})
             number = await derr1.balanceOf(accounts[2])
             dprint("Balance in dev acc after dev collect in asset1: " + number.toString())
             number.should.be.a.bignumber.that.equal(web3.utils.toBN('10000000000000000'));

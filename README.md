@@ -1,2 +1,2 @@
 # Contracts
-Contracts for diversify
+Contracts for cartallos

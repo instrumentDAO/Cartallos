@@ -5,7 +5,7 @@ import "./BEP20/BEP20.sol";
 import "./BEP20/IBEP20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
-contract DiversifyGeneral is BEP20{
+contract CartallosGeneral is BEP20{
     using SafeMath for uint256;
 
     IBEP20 asset1;
@@ -20,10 +20,10 @@ contract DiversifyGeneral is BEP20{
     uint256 devFeesCollected = 0;
     uint256 gweiUnits = 1000000000;
     mapping(address => bool) assets;
-    mapping(IBEP20 => uint256) assetPerDiversifyToken;
+    mapping(IBEP20 => uint256) assetPerCartallosToken;
 
 
-    constructor() BEP20("Diversify General Pool", "DRV-G") public {
+    constructor() BEP20("Cartallos General Pool", "DRV-G") public {
         assets[address(asset1)] = true;
         assets[address(asset2)] = true;
         assets[address(asset3)] = true;
@@ -33,27 +33,27 @@ contract DiversifyGeneral is BEP20{
         assets[address(asset7)] = true;
         assets[address(asset8)] = true;
 
-        assetPerDiversifyToken[asset1] = 10 * gweiUnits; //10 tokens to 1
-        assetPerDiversifyToken[asset2] = 10 * gweiUnits; //10 tokens to 1
-        assetPerDiversifyToken[asset3] = 10 * gweiUnits; //10 tokens to 1
-        assetPerDiversifyToken[asset4] = 10 * gweiUnits; //10 tokens to 1
-        assetPerDiversifyToken[asset5] = 10 * gweiUnits; //10 tokens to 1
-        assetPerDiversifyToken[asset6] = 10 * gweiUnits; //10 tokens to 1
-        assetPerDiversifyToken[asset7] = 10 * gweiUnits; //10 tokens to 1
-        assetPerDiversifyToken[asset8] = 10 * gweiUnits; //10 tokens to 1
+        assetPerCartallosToken[asset1] = 10 * gweiUnits; //10 tokens to 1
+        assetPerCartallosToken[asset2] = 10 * gweiUnits; //10 tokens to 1
+        assetPerCartallosToken[asset3] = 10 * gweiUnits; //10 tokens to 1
+        assetPerCartallosToken[asset4] = 10 * gweiUnits; //10 tokens to 1
+        assetPerCartallosToken[asset5] = 10 * gweiUnits; //10 tokens to 1
+        assetPerCartallosToken[asset6] = 10 * gweiUnits; //10 tokens to 1
+        assetPerCartallosToken[asset7] = 10 * gweiUnits; //10 tokens to 1
+        assetPerCartallosToken[asset8] = 10 * gweiUnits; //10 tokens to 1
     }
 
     function mint(uint256 amount) public{
-        bool success = asset1.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset1] * amount) / gweiUnits);
+        bool success = asset1.transferFrom(msg.sender, address(this), (assetPerCartallosToken[asset1] * amount) / gweiUnits);
         //string memory message = "num to transfer ";
-        //require(false, string(abi.encodePacked(message, uint2str((assetPerDiversifyToken[asset1] * amount) / gweiUnits))));////(assetPerDiversifyToken[asset1] * amount) / gweiUnits));
-        success = success && asset2.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset2] * amount) / gweiUnits);
-        success = success && asset3.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset3] * amount) / gweiUnits);
-        success = success && asset4.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset4] * amount) / gweiUnits);
-        success = success && asset5.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset5] * amount) / gweiUnits);
-        success = success && asset6.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset6] * amount) / gweiUnits);
-        success = success && asset7.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset7] * amount) / gweiUnits);
-        success = success && asset8.transferFrom(msg.sender, address(this), (assetPerDiversifyToken[asset8] * amount) / gweiUnits);
+        //require(false, string(abi.encodePacked(message, uint2str((assetPerCartallosToken[asset1] * amount) / gweiUnits))));////(assetPerCartallosToken[asset1] * amount) / gweiUnits));
+        success = success && asset2.transferFrom(msg.sender, address(this), (assetPerCartallosToken[asset2] * amount) / gweiUnits);
+        success = success && asset3.transferFrom(msg.sender, address(this), (assetPerCartallosToken[asset3] * amount) / gweiUnits);
+        success = success && asset4.transferFrom(msg.sender, address(this), (assetPerCartallosToken[asset4] * amount) / gweiUnits);
+        success = success && asset5.transferFrom(msg.sender, address(this), (assetPerCartallosToken[asset5] * amount) / gweiUnits);
+        success = success && asset6.transferFrom(msg.sender, address(this), (assetPerCartallosToken[asset6] * amount) / gweiUnits);
+        success = success && asset7.transferFrom(msg.sender, address(this), (assetPerCartallosToken[asset7] * amount) / gweiUnits);
+        success = success && asset8.transferFrom(msg.sender, address(this), (assetPerCartallosToken[asset8] * amount) / gweiUnits);
         require(success, "could not transfer all assets to the contract, check balances and approvals");
         _mint(msg.sender, amount);
     }
@@ -65,27 +65,27 @@ contract DiversifyGeneral is BEP20{
         amount = amount - devfee;
         devFeesCollected += devfee;
 
-        asset1.transfer(msg.sender, (assetPerDiversifyToken[asset1] * amount) / gweiUnits);
-        asset2.transfer(msg.sender, (assetPerDiversifyToken[asset2] * amount) / gweiUnits);
-        asset3.transfer(msg.sender, (assetPerDiversifyToken[asset3] * amount) / gweiUnits);
-        asset4.transfer(msg.sender, (assetPerDiversifyToken[asset4] * amount) / gweiUnits);
-        asset5.transfer(msg.sender, (assetPerDiversifyToken[asset5] * amount) / gweiUnits);
-        asset6.transfer(msg.sender, (assetPerDiversifyToken[asset6] * amount) / gweiUnits);
-        asset7.transfer(msg.sender, (assetPerDiversifyToken[asset7] * amount) / gweiUnits);
-        asset8.transfer(msg.sender, (assetPerDiversifyToken[asset8] * amount) / gweiUnits);
+        asset1.transfer(msg.sender, (assetPerCartallosToken[asset1] * amount) / gweiUnits);
+        asset2.transfer(msg.sender, (assetPerCartallosToken[asset2] * amount) / gweiUnits);
+        asset3.transfer(msg.sender, (assetPerCartallosToken[asset3] * amount) / gweiUnits);
+        asset4.transfer(msg.sender, (assetPerCartallosToken[asset4] * amount) / gweiUnits);
+        asset5.transfer(msg.sender, (assetPerCartallosToken[asset5] * amount) / gweiUnits);
+        asset6.transfer(msg.sender, (assetPerCartallosToken[asset6] * amount) / gweiUnits);
+        asset7.transfer(msg.sender, (assetPerCartallosToken[asset7] * amount) / gweiUnits);
+        asset8.transfer(msg.sender, (assetPerCartallosToken[asset8] * amount) / gweiUnits);
     }
 
     function collectDevFunds(uint256 amount) public onlyOwner{
         require(amount <= devFeesCollected, "Dev fees currently collected are less than the amount collected");
         devFeesCollected -= amount;
-        asset1.transfer(msg.sender, (assetPerDiversifyToken[asset1] * amount) / gweiUnits);
-        asset2.transfer(msg.sender, (assetPerDiversifyToken[asset2] * amount) / gweiUnits);
-        asset3.transfer(msg.sender, (assetPerDiversifyToken[asset3] * amount) / gweiUnits);
-        asset4.transfer(msg.sender, (assetPerDiversifyToken[asset4] * amount) / gweiUnits);
-        asset5.transfer(msg.sender, (assetPerDiversifyToken[asset5] * amount) / gweiUnits);
-        asset6.transfer(msg.sender, (assetPerDiversifyToken[asset6] * amount) / gweiUnits);
-        asset7.transfer(msg.sender, (assetPerDiversifyToken[asset7] * amount) / gweiUnits);
-        asset8.transfer(msg.sender, (assetPerDiversifyToken[asset8] * amount) / gweiUnits);
+        asset1.transfer(msg.sender, (assetPerCartallosToken[asset1] * amount) / gweiUnits);
+        asset2.transfer(msg.sender, (assetPerCartallosToken[asset2] * amount) / gweiUnits);
+        asset3.transfer(msg.sender, (assetPerCartallosToken[asset3] * amount) / gweiUnits);
+        asset4.transfer(msg.sender, (assetPerCartallosToken[asset4] * amount) / gweiUnits);
+        asset5.transfer(msg.sender, (assetPerCartallosToken[asset5] * amount) / gweiUnits);
+        asset6.transfer(msg.sender, (assetPerCartallosToken[asset6] * amount) / gweiUnits);
+        asset7.transfer(msg.sender, (assetPerCartallosToken[asset7] * amount) / gweiUnits);
+        asset8.transfer(msg.sender, (assetPerCartallosToken[asset8] * amount) / gweiUnits);
     }
 
     //---------------------------------------------------------------------------------------
@@ -114,42 +114,42 @@ contract DiversifyGeneral is BEP20{
     function setassetTESTINGONLY(address asset, uint256 whichone, uint256 ratioXgwei) public onlyOwner{
         if(whichone == 1){
             asset1 = IBEP20(asset);
-            assetPerDiversifyToken[asset1] = ratioXgwei;
+            assetPerCartallosToken[asset1] = ratioXgwei;
             assets[address(asset1)] = true;
         }
         if(whichone == 2){
             asset2 = IBEP20(asset);
-            assetPerDiversifyToken[asset2] = ratioXgwei;
+            assetPerCartallosToken[asset2] = ratioXgwei;
             assets[address(asset2)] = true;
         }
         if(whichone == 3){
             asset3 = IBEP20(asset);
-            assetPerDiversifyToken[asset3] = ratioXgwei;
+            assetPerCartallosToken[asset3] = ratioXgwei;
             assets[address(asset3)] = true;
         }
         if(whichone == 4){
             asset4 = IBEP20(asset);
-            assetPerDiversifyToken[asset4] = ratioXgwei;
+            assetPerCartallosToken[asset4] = ratioXgwei;
             assets[address(asset4)] = true;
         }
         if(whichone == 5){
             asset5 = IBEP20(asset);
-            assetPerDiversifyToken[asset5] = ratioXgwei;
+            assetPerCartallosToken[asset5] = ratioXgwei;
             assets[address(asset5)] = true;
         }
         if(whichone == 6){
             asset6 = IBEP20(asset);
-            assetPerDiversifyToken[asset6] = ratioXgwei;
+            assetPerCartallosToken[asset6] = ratioXgwei;
             assets[address(asset6)] = true;
         }
         if(whichone == 7){
             asset7 = IBEP20(asset);
-            assetPerDiversifyToken[asset7] = ratioXgwei;
+            assetPerCartallosToken[asset7] = ratioXgwei;
             assets[address(asset7)] = true;
         }
         if(whichone == 8){
             asset8 = IBEP20(asset);
-            assetPerDiversifyToken[asset8] = ratioXgwei;
+            assetPerCartallosToken[asset8] = ratioXgwei;
             assets[address(asset8)] = true;
         }
     }

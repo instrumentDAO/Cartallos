@@ -1,7 +1,7 @@
 {
   "name": "contracts",
   "version": "1.0.0",
-  "description": "Contracts for diversify",
+  "description": "Contracts for cartallos",
   "main": "truffle-config.js",
   "directories": {
     "test": "test"
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Diversify-Finance/Contracts.git"
+    "url": "git+https://github.com/Cartallos-Finance/Contracts.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Diversify-Finance/Contracts/issues"
+    "url": "https://github.com/Cartallos-Finance/Contracts/issues"
   },
-  "homepage": "https://github.com/Diversify-Finance/Contracts#readme",
+  "homepage": "https://github.com/Cartallos-Finance/Contracts#readme",
   "dependencies": {
     "@openzeppelin/contracts": "^3.4.1",
     "chai": "^4.3.0",

@@ -19,7 +19,7 @@ interface Executor {
     ) external;
 }
 
-contract DiversifyGovernance is LPTokenWrapper{
+contract CartallosGovernance is LPTokenWrapper{
     /* Fee collection for any other token */
 
     function seize(IBEP20 _token, uint256 amount) external {
