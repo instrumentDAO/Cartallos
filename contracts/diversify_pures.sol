@@ -5,6 +5,7 @@ pragma solidity =0.7.5;
 import "./BEP20/BEP20.sol";
 import "./BEP20/IBEP20.sol";
 import "./Interfaces/IPancakeRouter02.sol";
+import "./Interfaces/IWBNB.sol";
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
@@ -13,6 +14,7 @@ contract CartallosPures is BEP20{
 
     address internal constant PANCAKESWAP_ROUTER_ADDRESS = 0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F;
     IPancakeRouter02 public pancakeswapRouter;
+    IWBNB public wbnbContract;
 
 
     address a_btc = 0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c;
@@ -32,6 +34,7 @@ contract CartallosPures is BEP20{
 
     constructor() BEP20("Cartallos General Pool", "DRV-G") {
         pancakeswapRouter = IPancakeRouter02(PANCAKESWAP_ROUTER_ADDRESS);
+        wbnbContract = IWBNB(a_wbnb);
         assets[address(btc)] = true;
         assets[address(eth)] = true;
         assets[address(wbnb)] = true;
@@ -50,18 +53,17 @@ DECIDE ON DEADLINE instead of block.timestamp SHOULD PASS FROM FRONTEND
         address[] memory path = new address[](2);
         path[0] = pancakeswapRouter.WETH();
         path[1] = address(a_btc);
-        //docs say 5 inputs (amountIn, amountOutMin, path, to, deadline)
-        //Compiler demands 4 inputs though, I think amountIn isn't considered necessary??..
 /*
 TODO
 Handle data from pancakeswap router, insert requires where necessary
+Replace 2 with price oracle result??
 */
-        pancakeswapRouter.swapExactETHForTokens(((assetPerCartallosToken[btc] * amount) / gweiUnits), path, address(this), block.timestamp);        
+        uint256[] memory btcResult = pancakeswapRouter.swapExactETHForTokens{value: ((assetPerCartallosToken[btc] * amount) / gweiUnits)} (2, path, address(this), block.timestamp);        
         //is reusing path like this okay??
         path[1] = address(a_eth);
-        pancakeswapRouter.swapExactETHForTokens(((assetPerCartallosToken[eth] * amount) / gweiUnits), path, address(this), block.timestamp); 
-        //should we even bother wrapping the bnb??
-        //require(a_wbnb.deposit((assetPerCartallosToken[eth] * amount) / gweiUnits));
+        uint256[] memory ethResult = pancakeswapRouter.swapExactETHForTokens{value: ((assetPerCartallosToken[eth] * amount) / gweiUnits)} (2, path, address(this), block.timestamp); 
+        //check this works correctly
+        wbnbContract.deposit{value: (assetPerCartallosToken[wbnb] * amount) / gweiUnits}();
         _mint(msg.sender, amount);
     }
 
