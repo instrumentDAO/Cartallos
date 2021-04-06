@@ -3,7 +3,7 @@ pragma solidity =0.7.5;
 
 
 import "./IBEP20.sol";
-import "./WBNB.sol";
+import "./IWBNB.sol";
 import "./IPancakeRouter02.sol";
 
 import "./SafeMath.sol";
