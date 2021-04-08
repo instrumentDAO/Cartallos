@@ -6,7 +6,7 @@ import "./BEP20/BEP20.sol";
 import "./BEP20/IBEP20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
-contract CartallosPures is BEP20{
+contract CartallosDefi5 is BEP20{
     using SafeMath for uint256;
 
     address a_btc = 0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c;

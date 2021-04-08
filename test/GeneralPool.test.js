@@ -7,7 +7,6 @@ const web3 = new Web3(provider);
 
 
 const CartallosGeneral = artifacts.require('CartallosGeneral')
-const CartallosGovernance = artifacts.require('CartallosGovernance')
 const DerpCoin = artifacts.require('DerpCoin')
 
 const timeMachine = require('ganache-time-traveler');

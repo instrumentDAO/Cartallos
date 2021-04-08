@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity =0.7.5;
 
 
@@ -10,7 +11,7 @@ contract DerpCoin is BEP20 {
     using SafeMath for uint256;
 
 
-    constructor() BEP20("DerpCoin", "DERRRR") public {
+    constructor() BEP20("DerpCoin", "DERRRR") {
 
     }
 

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity =0.7.5;
 
 
@@ -23,7 +25,7 @@ contract CartallosGeneral is BEP20{
     mapping(IBEP20 => uint256) assetPerCartallosToken;
 
 
-    constructor() BEP20("Cartallos General Pool", "DRV-G") public {
+    constructor() BEP20("Cartallos General Pool", "DRV-G") {
         assets[address(asset1)] = true;
         assets[address(asset2)] = true;
         assets[address(asset3)] = true;
