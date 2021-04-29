@@ -45,26 +45,51 @@ contract CartallosPures is BEP20{
         assetPerCartallosToken[wbnb] = 10 * gweiUnits / 10; //.1 tokens to 1
 
     }
-/*
-TODO
-DECIDE ON DEADLINE instead of block.timestamp SHOULD PASS FROM FRONTEND
-*/
-    function mint(uint256 amount) public{
+
+    function mint(uint256 amount, uint256 expectToPayNotMoreThan, uint256 timeout) public payable{
+        /*
+        timeout is a unix timestamp of when to timeout the swaps
+        slippageMul1000 allows us to set slippage, multiply by gweiUnits so we can do decimal math
+        amount is the amount of cartalos pool token user wants to mint
+        */
+        
         address[] memory path = new address[](2);
         path[0] = uniswapRouter.WETH();
         path[1] = address(a_btc);
-/*
-TODO
-Handle data from pancakeswap router, insert requires where necessary
-Replace 2 with price oracle result??
-*/
-        uint256[] memory btcResult = uniswapRouter.swapExactETHForTokens{value: ((assetPerCartallosToken[btc] * amount) / gweiUnits)} (2, path, address(this), block.timestamp);        
-        //is reusing path like this okay??
+        
+        
+        uint256 btcRequired = (assetPerCartallosToken[btc] * amount) / ( gweiUnits);
+        uint256 ethRequired = (assetPerCartallosToken[btc] * amount) / ( gweiUnits);
+        
+        /*
+        use pancakeswap to calculate how much bnb is needed to swap for the requested amount of tokens
+        
+        getAmountIns gives the cost in bnb you would need to produce a particular amount of tokens after the swap 
+        
+        */
+        
+        uint256 bnbNeededForBtc = uniswapRouter.getAmountsIn(btcRequired, path)[0];
+        path[1] = address(a_eth); //change the path array to path to eth
+        uint256 bnbNeededForEth = uniswapRouter.getAmountsIn(ethRequired, path)[0];
+        path[1] = address(a_btc); //change the path array to path back to btc so further functions use it properly
+        
+        uint256 total = bnbNeededForBtc + bnbNeededForBtc + ((assetPerCartallosToken[wbnb] * amount) / gweiUnits);
+        
+        require(total <= expectToPayNotMoreThan);
+        
+        uint256[] memory btcResult = uniswapRouter.swapExactETHForTokens
+            {value: bnbNeededForBtc} 
+            (2, path, address(this), timeout);        
         path[1] = address(a_eth);
-        uint256[] memory ethResult = uniswapRouter.swapExactETHForTokens{value: ((assetPerCartallosToken[eth] * amount) / gweiUnits)} (2, path, address(this), block.timestamp); 
-        //check this works correctly
+        uint256[] memory ethResult = uniswapRouter.swapExactETHForTokens
+            {value: bnbNeededForEth}
+            (2, path, address(this), timeout); 
+        
+        //check to make sure we got the tokens we wanted
+        require(btcResult[1] == btcRequired);
+        require(ethResult[1] == ethRequired);
+        
         wbnbContract.deposit{value: (assetPerCartallosToken[wbnb] * amount) / gweiUnits}();
-        _mint(msg.sender, amount);
     }
 
     function burn(uint256 amount) public {
