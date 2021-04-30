@@ -12,14 +12,14 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 contract CartallosPures is BEP20{
     using SafeMath for uint256;
 
-    address internal constant UNISWAP_ROUTER_ADDRESS = 0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F;
+    address internal constant UNISWAP_ROUTER_ADDRESS = 0x68eA183eDbfc146407af1672D2d1cc351c2fb5b8;
     IUniswapV2Router02 public uniswapRouter;
     IWBNB public wbnbContract;
 
 
-    address a_btc = 0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c;
-    address a_eth = 0x2170Ed0880ac9A755fd29B2688956BD959F933F8;
-    address a_wbnb = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
+    address a_btc = 0x54824f67455A05Cad7b0751c4715e46C2aa226C2;
+    address a_eth = 0xe778f496CE179f3895Fb10E040E4dA85A31e2724;
+    address a_wbnb = 0x6DFAFB92fafA78E82802fFA07CCCE1dcD05Ec9de;
 
     IBEP20 btc = IBEP20(a_btc);
     IBEP20 eth = IBEP20(a_eth);

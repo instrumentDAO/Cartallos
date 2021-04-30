@@ -1,9 +1,17 @@
-const json = require('@uniswap/v2-core/build/UniswapV2Factory.json');
-const contract = require('@truffle/contract');
-const UniswapV2Factory = contract(json);
+const Web3 = require('web3');
+const provider = new Web3.providers.HttpProvider('http://localhost:8545');
+const fs = require('fs');
+const contract = JSON.parse(fs.readFileSync('../contracts/TestTokens/UniswapV2Factory.json'));
+const abi = contract['abi'];
+const bytecode = contract['bytecode'];
 
-UniswapV2Factory.setProvider(this.web3._provider);
-
-module.exports = function(_deployer, network, accounts) {
-    _deployer.deploy(UniswapV2Factory, accounts[0], {from: accounts[0]})
+module.exports = function(deployer, network, accounts) {
+    let web3 = new Web3();
+    web3.setProvider(provider);
+    let wBNB = new web3.eth.Contract(abi);
+    wBNB.deploy({data: bytecode, arguments: [accounts[0]]}).send({from: accounts[0], gas: 6721975, gasPrice: '20000000000'}).then(
+        function(result){
+            console.log(result.options.address);
+        }
+    );
 };
