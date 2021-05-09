@@ -29,4 +29,3 @@ Set the port to 8545, and run the following commands
     truffle exec ./test/FillPools.js
 
 The web3 service will then be running on 127.0.0.1:8545
-
