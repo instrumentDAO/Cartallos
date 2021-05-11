@@ -75,7 +75,7 @@ contract CartallosPures is BEP20{
         
         uint256 total = bnbNeededForBtc + bnbNeededForBtc + ((assetPerCartallosToken[wbnb] * amount) / gweiUnits);
         
-        require(total <= expectToPayNotMoreThan);
+        require(total <= expectToPayNotMoreThan, "Slippage limit exceeded after swaps");
         
         uint256[] memory btcResult = uniswapRouter.swapExactETHForTokens
             {value: bnbNeededForBtc} 
