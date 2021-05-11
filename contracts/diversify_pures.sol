@@ -86,8 +86,8 @@ contract CartallosPures is BEP20{
             (2, path, address(this), timeout); 
         
         //check to make sure we got the tokens we wanted
-        require(btcResult[1] == btcRequired);
-        require(ethResult[1] == ethRequired);
+        require(btcResult[1] == btcRequired, "btc not equal to btc required");
+        require(ethResult[1] == ethRequired, "eth not equal to btc required");
         
         wbnbContract.deposit{value: (assetPerCartallosToken[wbnb] * amount) / gweiUnits}();
     }
