@@ -59,7 +59,7 @@ contract CartallosPures is BEP20 {
             (assetPerCartallosToken[btc] * amount) / (gweiUnits);
         uint256 ethRequired =
             (assetPerCartallosToken[eth] * amount) / (gweiUnits);
-            
+
         /*
         use pancakeswap to calculate how much bnb is needed to swap for the requested amount of tokens
         
@@ -105,6 +105,7 @@ contract CartallosPures is BEP20 {
 //TODO Check that doesn't break on swaps==true, but deposit==false.. (Check WBNB contract Deposit event??)
         wbnbContract.deposit{value: (assetPerCartallosToken[wbnb] * amount) / gweiUnits}();
         
+//TODO Fix transfer funds
         if (bnbNeededForBtc > btcResult[0]) safeTransferFunds(msg.sender, (bnbNeededForBtc - btcResult[0]));
         if (bnbNeededForEth > ethResult[0]) safeTransferFunds(msg.sender, (bnbNeededForEth - ethResult[0]));
 
