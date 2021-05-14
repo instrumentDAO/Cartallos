@@ -14,4 +14,5 @@ interface IWBNB {
 
     function deposit() external payable;
     function withdraw(uint wad) external;
+    function balanceOf(address src) external;
 }
