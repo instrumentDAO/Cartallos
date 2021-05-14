@@ -155,6 +155,7 @@ contract CartallosPures is BEP20 {
         uint256[] memory btcResult =
         uniswapRouter.swapExactTokensForETH{value: bnbNeededForBtc}(
             btcToExchange,
+            minimumBNBtoReceive,
             path,
             address(this),
             timeout
@@ -165,6 +166,7 @@ contract CartallosPures is BEP20 {
         uint256[] memory ethResult =
         uniswapRouter.swapExactTokensForETH{value: bnbNeededForEth}(
             ethToExchange,
+            minimumBNBtoReceive,
             path,
             address(this),
             timeout
