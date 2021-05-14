@@ -105,9 +105,9 @@ contract CartallosPures is BEP20 {
 //TODO Check that doesn't break on swaps==true, but deposit==false.. (Check WBNB contract Deposit event??)
         wbnbContract.deposit{value: (assetPerCartallosToken[wbnb] * amount) / gweiUnits}();
         
-//TODO Fix transfer funds
-        if (bnbNeededForBtc > btcResult[0]) safeTransferFunds(msg.sender, (bnbNeededForBtc - btcResult[0]));
-        if (bnbNeededForEth > ethResult[0]) safeTransferFunds(msg.sender, (bnbNeededForEth - ethResult[0]));
+        uint256 bnbspent = btcResult[0] + ethResult[0] + ((assetPerCartallosToken[wbnb] * amount) / gweiUnits);
+        uint256 leftoverBNB = msg.value - bnbspent;
+        safeTransferFunds(msg.sender, leftoverBNB);
 
         _mint(msg.sender, amount);
 
