@@ -42,7 +42,7 @@ contract CartallosPures is BEP20 {
     }
 
     function mint(
-        uint256 expectToPayNotMoreThan,
+        uint256 amount,
         uint256 timeout
     ) public payable {
         /*
@@ -56,49 +56,42 @@ contract CartallosPures is BEP20 {
         path[1] = address(a_btc);
 
         uint256 btcRequired =
-            (assetPerCartallosToken[btc] * msg.value) / (gweiUnits);
+            (assetPerCartallosToken[btc] * amount) / (gweiUnits);
         uint256 ethRequired =
-            (assetPerCartallosToken[eth] * msg.value) / (gweiUnits);
-
+            (assetPerCartallosToken[eth] * amount) / (gweiUnits);
+            
         /*
         use pancakeswap to calculate how much bnb is needed to swap for the requested amount of tokens
         
         getAmountIns gives the cost in bnb you would need to produce a particular amount of tokens after the swap 
         
         */
-
         uint256 bnbNeededForBtc =
             uniswapRouter.getAmountsIn(btcRequired, path)[0];
-        //TODO Change hardcoding on slippage from 1.05 to any specified variable
-        uint256 bnbNeededForBtcMax = (bnbNeededForBtc + ((bnbNeededForBtc * 5)/1000));
-
         path[1] = address(a_eth); //change the path array to path to eth
         uint256 bnbNeededForEth =
             uniswapRouter.getAmountsIn(ethRequired, path)[0];
-        uint256 bnbNeededForEthMax = (bnbNeededForEth + ((bnbNeededForEth * 5)/1000));
-
         path[1] = address(a_btc); //change the path array to path back to btc so further functions use it properly
 
         require(
             (bnbNeededForBtc +
                 bnbNeededForEth +
-                ((assetPerCartallosToken[wbnb] * msg.value) / gweiUnits)) <= expectToPayNotMoreThan,
-            "Slippage limit exceeded after swaps"
+                ((assetPerCartallosToken[wbnb] * amount) / gweiUnits)) <= msg.value,
+            "Slippage limit exceeded after swaps, is value too low?"
         );
-
+        
         uint256[] memory btcResult =
-            uniswapRouter.swapETHForExactTokens{value: bnbNeededForBtcMax}(
+            uniswapRouter.swapETHForExactTokens{value: bnbNeededForBtc}(
                 btcRequired,
                 path,
                 address(this),
                 timeout
             );
-
         require(btcResult[1] == btcRequired, "btc not equal to btc required");
 
         path[1] = address(a_eth);
         uint256[] memory ethResult =
-            uniswapRouter.swapETHForExactTokens{value: bnbNeededForEthMax}(
+            uniswapRouter.swapETHForExactTokens{value: bnbNeededForEth}(
                 ethRequired,
                 path,
                 address(this),
@@ -108,7 +101,15 @@ contract CartallosPures is BEP20 {
         //check to make sure we got the tokens we wanted
         require(ethResult[1] == ethRequired, "eth not equal to btc required");
 
-        wbnbContract.deposit{value: (assetPerCartallosToken[wbnb] * msg.value) / gweiUnits}();
+
+//TODO Check that doesn't break on swaps==true, but deposit==false.. (Check WBNB contract Deposit event??)
+        wbnbContract.deposit{value: (assetPerCartallosToken[wbnb] * amount) / gweiUnits}();
+        
+        if (bnbNeededForBtc > btcResult[0]) safeTransferFunds(msg.sender, (bnbNeededForBtc - btcResult[0]));
+        if (bnbNeededForEth > ethResult[0]) safeTransferFunds(msg.sender, (bnbNeededForEth - ethResult[0]));
+
+        _mint(msg.sender, amount);
+
     }
 
     function burn(uint256 amount) public {
@@ -183,6 +184,11 @@ contract CartallosPures is BEP20 {
                 (assetPerCartallosToken[wbnb] * amount) / gweiUnits
             );
         }
+    }
+
+    function safeTransferFunds(address to, uint256 value) internal {
+        (bool success, ) = to.call{value: value}(new bytes(0));
+        require(success, 'TransferHelper::safeTransferFunds: Fund transfer failed');
     }
 
     //---------------------------------------------------------------------------------------

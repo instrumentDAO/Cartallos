@@ -35,10 +35,8 @@ module.exports = function () {
     async function mint(callback) {
         let web3 = new Web3();
         web3.setProvider(provider);
-        uniswap = await new web3.eth.Contract(uniswapAbi, uniswapAddress);
         cartallos = await new web3.eth.Contract(cartallosAbi, cartallosAddress);
-        wBNB = await new web3.eth.Contract(wBNBAbi, wBNBAddress);
-        cartallos.methods.mint((wei2eth), 1652427671).send({ from: user, value: 10000, gas: 6721975, gasPrice: '20000000000' }).then(function (minted) {
+        cartallos.methods.mint((wei2eth), 1652427671).send({ from: user, value: 3000000000000000000, gas: 6721975, gasPrice: '20000000000' }).then(function (minted) {
             console.log("minted: " + minted);
         }).catch(function (err) {
             console.log("error: " + err.message);
