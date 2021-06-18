@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 /**
  *Submitted for verification at BscScan.com on 2020-09-03
 */
