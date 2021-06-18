@@ -18,7 +18,7 @@ Contracts for cartallos
 
 # Run Without Docker, with Ganache GUI
     npm install truffle -g
-    npm install @openzeppelin/contract
+    npm install @openzeppelin/contracts
 At this point run ganache GUI with the following mnemonic: 
     
     border future dirt flag moment goat february law awake achieve lecture tumble
