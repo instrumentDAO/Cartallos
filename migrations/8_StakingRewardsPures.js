@@ -5,7 +5,7 @@ const contract = JSON.parse(fs.readFileSync('../contracts/StakingRewards.json'))
 const abi = contract['abi'];
 const bytecode = contract['bytecode'];
 //governance token
-const rewardsToken = '0xDfF0888f5bFfCCDD5C039c3317D176F628476509';
+const rewardsToken = '0x7907d0C11B358dd1229C9332D85fA22783658bD4';
 //cart-pures
 const stakingToken = '0x51a255540d8c915eC9f846A00044B864Bbd672D9';
 
