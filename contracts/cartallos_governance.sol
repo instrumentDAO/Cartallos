@@ -2,7 +2,7 @@
 pragma solidity >=0.5.16;
 pragma abicoder v2;
 
-contract Cart {
+contract Cartallos {
 
     address private _owner;
 

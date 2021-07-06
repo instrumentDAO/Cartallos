@@ -19,6 +19,7 @@ contract CartallosPures is BEP20 {
     address a_btc = 0x54824f67455A05Cad7b0751c4715e46C2aa226C2;
     address a_eth = 0xe778f496CE179f3895Fb10E040E4dA85A31e2724;
     address a_wbnb = 0x6DFAFB92fafA78E82802fFA07CCCE1dcD05Ec9de;
+    address feeAddress = 0x6a2B6283AD99b412b717564c068Ab8Bd97294AC4;
 
     IBEP20 btc = IBEP20(a_btc);
     IBEP20 eth = IBEP20(a_eth);
@@ -26,15 +27,11 @@ contract CartallosPures is BEP20 {
 
     uint256 devFeesCollected = 0;
     uint256 gweiUnits = 1000000000;
-    mapping(address => bool) assets;
     mapping(IBEP20 => uint256) assetPerCartallosToken;
 
     constructor() BEP20("Cartallos General Pool", "Cart-G") {
         uniswapRouter = IUniswapV2Router02(UNISWAP_ROUTER_ADDRESS);
         wbnbContract = IWBNB(a_wbnb);
-        assets[address(btc)] = true;
-        assets[address(eth)] = true;
-        assets[address(wbnb)] = true;
 
         assetPerCartallosToken[btc] = gweiUnits / 200; //.005 tokens to 1
         assetPerCartallosToken[eth] = (3 * gweiUnits) / 20; //.15 tokens to 1
@@ -47,7 +44,6 @@ contract CartallosPures is BEP20 {
     ) public payable {
         /*
         timeout is a unix timestamp of when to timeout the swaps
-        slippageMul1000 allows us to set slippage, multiply by gweiUnits so we can do decimal math
         amount is the amount of cartalos pool token user wants to mint
         */
 
@@ -99,10 +95,8 @@ contract CartallosPures is BEP20 {
             );
 
         //check to make sure we got the tokens we wanted
-        require(ethResult[1] == ethRequired, "eth not equal to btc required");
+        require(ethResult[1] == ethRequired, "eth not equal to eth required");
 
-
-//TODO Check that doesn't break on swaps==true, but deposit==false.. (Check WBNB contract Deposit event??)
         wbnbContract.deposit{value: (assetPerCartallosToken[wbnb] * amount) / gweiUnits}();
         
         uint256 bnbspent = btcResult[0] + ethResult[0] + ((assetPerCartallosToken[wbnb] * amount) / gweiUnits);
@@ -120,11 +114,18 @@ contract CartallosPures is BEP20 {
     ) public {
         /*
         timeout is a unix timestamp of when to timeout the swaps
-        slippageMul1000 allows us to set slippage, multiply by gweiUnits so we can do decimal math
         amount is the amount of cartalos pool token user wants to mint
+        minimumBNBtoReceive is the minimum amount of BNB the user must receive before reverting
         */
 
-//TODO Take out dev fee
+        require(balanceOf(msg.sender) >= amount, "balance too low");
+        uint256 devfee = amount / 1000;
+        amount = amount.sub(devfee);
+        require(minimumBNBtoReceive <= amount, "Submitted minimumBNBtoReceive higher than burn fee");
+
+        require(transfer(feeAddress, devfee), "Dev fees could not be transferred successfully");
+        devFeesCollected += devfee;
+
 
         address[] memory path = new address[](2);
         path[0] = address(a_btc);
@@ -177,13 +178,8 @@ contract CartallosPures is BEP20 {
 
         require(ethResult[0] == bnbAmountFromEth, "bnb not equal to bnb required");
 
-        //check to make sure we got the tokens we wanted
-        //TODO Check that doesn't break on swaps==true, but deposit==false.. (Check WBNB contract Deposit event??)
         bool transferWbnb = wbnbContract.transfer(msg.sender, ((assetPerCartallosToken[wbnb] * amount) / gweiUnits));
         require(transferWbnb, "Transfer wbnb failed");
-        //Note from dak: I think we use btcResult[1] and ethResult[1] because the second index of the array
-        //will contain the output amount and the first the input amount. In this case the output
-        //is bnb so that is what we care about for slippage
         _burn(msg.sender, amount);
 
     }
@@ -191,9 +187,10 @@ contract CartallosPures is BEP20 {
 
     function burnRaw(uint256 amount) public {
         require(balanceOf(msg.sender) >= amount, "balance too low");
-        _burn(msg.sender, amount);
         uint256 devfee = amount / 1000;
-        amount = amount - devfee;
+        amount = amount.sub(devfee);
+
+        require(transfer(feeAddress, amount), "Dev fees could not be transferred successfully");
         devFeesCollected += devfee;
 
         btc.transfer(
@@ -208,12 +205,13 @@ contract CartallosPures is BEP20 {
             msg.sender,
             (assetPerCartallosToken[wbnb] * amount) / gweiUnits
         );
+        _burn(msg.sender, amount);
     }
 
     function collectDevFunds(uint256 amount) public onlyOwner {
         require(
             amount <= devFeesCollected,
-            "Dev fees currently collected are less than the amount collected"
+            "Dev fees currently collected are less than the amount submitted"
         );
         devFeesCollected -= amount;
         btc.transfer(
@@ -236,10 +234,13 @@ contract CartallosPures is BEP20 {
 
     function emergenyBurn(uint256 amount, uint256 primeKey) external {
         require(primeKey != 0, "primeKey cannot be 0");
+
         require(balanceOf(msg.sender) >= amount, "balance too low");
-        _burn(msg.sender, amount);
         uint256 devfee = amount / 1000;
-        amount = amount - devfee;
+        amount = amount.sub(devfee);
+
+        require(transfer(feeAddress, amount), "Dev fees could not be transferred successfully");
+        devFeesCollected += devfee;
 
         if (primeKey % 2 == 0) {
             btc.transfer(
@@ -261,6 +262,7 @@ contract CartallosPures is BEP20 {
                 (assetPerCartallosToken[wbnb] * amount) / gweiUnits
             );
         }
+        _burn(msg.sender, amount);
     }
 
     function safeTransferFunds(address to, uint256 value) internal {
