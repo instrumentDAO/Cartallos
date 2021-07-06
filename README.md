@@ -12,7 +12,7 @@ Contracts for cartallos
 # Run Without Docker, with ganache-cli
     npm install truffle -g
     npm install -g ganache-cli
-    npm install @openzeppelin/contract
+    npm install @openzeppelin/contracts
     ganache-cli -s cow
     truffle deploy
     truffle exec ./test/FillPools.js
