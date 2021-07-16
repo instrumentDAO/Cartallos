@@ -65,11 +65,11 @@ contract CartallosPures is BEP20 {
         uint256 ethResult = makeSwapMint(bnbNeededForEth, ethRequired, timeout, path);
 
         wbnbContract.deposit{
-            value: (assetPerCartallosToken[wbnb] * amount) / gweiUnits
+            value: ((assetPerCartallosToken[wbnb] * amount) / gweiUnits)
         }();
 
         uint256 bnbspent = btcResult.add(ethResult).add(((assetPerCartallosToken[wbnb] * amount) / gweiUnits));
-        uint256 leftoverBNB = msg.value - bnbspent;
+        uint256 leftoverBNB = msg.value.sub(bnbspent);
         safeTransferFunds(msg.sender, leftoverBNB);
 
         _mint(msg.sender, amount);
@@ -107,9 +107,9 @@ contract CartallosPures is BEP20 {
         */
 
         require(balanceOf(msg.sender) >= amount, "balance too low");
-        _burn(msg.sender, amount);
         uint256 devfee = amount / 1000;
         amount = amount.sub(devfee);
+
         require(
             minimumBNBtoReceive <= amount,
             "Submitted minimumBNBtoReceive higher than amount submitted minus burn fee"
@@ -120,6 +120,8 @@ contract CartallosPures is BEP20 {
             "Dev fees could not be transferred successfully"
         );
         devFeesCollected += devfee;
+
+        _burn(msg.sender, amount);
 
         address[] memory path = new address[](2);
         path[0] = address(a_btc);
@@ -192,7 +194,6 @@ contract CartallosPures is BEP20 {
     }
 
     function burnRaw(uint256 amount) public {
-        _burn(msg.sender, amount);
         require(balanceOf(msg.sender) >= amount, "balance too low");
         uint256 devfee = amount / 1000;
         amount = amount.sub(devfee);
@@ -202,6 +203,8 @@ contract CartallosPures is BEP20 {
             "Dev fees could not be transferred successfully"
         );
         devFeesCollected += devfee;
+
+        _burn(msg.sender, amount);
 
         btc.transfer(
             msg.sender,
@@ -242,7 +245,6 @@ contract CartallosPures is BEP20 {
     }
 
     function emergenyBurn(uint256 amount, uint256 primeKey) external {
-        _burn(msg.sender, amount);
         require(primeKey != 0, "primeKey cannot be 0");
 
         require(balanceOf(msg.sender) >= amount, "balance too low");
@@ -254,6 +256,8 @@ contract CartallosPures is BEP20 {
             "Dev fees could not be transferred successfully"
         );
         devFeesCollected += devfee;
+
+        _burn(msg.sender, amount);
 
         if (primeKey % 2 == 0) {
             btc.transfer(
