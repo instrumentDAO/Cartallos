@@ -5,6 +5,7 @@ Contracts for cartallos
 # Install With Docker
     docker build -t cartallos .
     docker run -p 8545:8545 -d --name cartallos cartallos
+    docker exec -it cartallos ganache-cli -s cow
     docker exec -it cartallos truffle deploy
     docker exec -it cartallos truffle exec ./test/FillPools.js
 
