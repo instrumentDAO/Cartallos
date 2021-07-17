@@ -25,7 +25,7 @@ const bTCAbi = bTCJson['abi'];
 const uniswapJson = require('../contracts/TestTokens/UniswapV2Router02.json');
 const uniswapAbi = uniswapJson['abi'];
 
-const cartallosJson = require('../build/contracts/CartallosPures.json');
+const cartallosJson = require('../build/contracts/CartallosCore.json');
 const cartallosAbi = cartallosJson['abi'];
 
 
