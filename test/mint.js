@@ -36,7 +36,7 @@ module.exports = function () {
         let web3 = new Web3();
         web3.setProvider(provider);
         cartallos = await new web3.eth.Contract(cartallosAbi, cartallosAddress);
-        cartallos.methods.mint((wei2eth), 1652427671).send({ from: user, value: 3000000000000000000, gas: 6721975, gasPrice: '20000000000' }).then(function (minted) {
+        cartallos.methods.mint((wei2eth.mul(web3.utils.toBN('6'))), 1652427671).send({ from: user, value: 30000000000000000000, gas: 6721975, gasPrice: '20000000000' }).then(function (minted) {
             console.log("minted: " + minted);
         }).catch(function (err) {
             console.log("error: " + err.message);
