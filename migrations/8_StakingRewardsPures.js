@@ -12,8 +12,8 @@ const cartallosGeneralToken = '0x51a255540d8c915eC9f846A00044B864Bbd672D9';
 module.exports = function(deployer, network, accounts) {
     let web3 = new Web3();
     web3.setProvider(provider);
-    let stakingRewards = new web3.eth.Contract(abi);
-    stakingRewards.deploy({data: bytecode, arguments: [accounts[0], accounts[0], cartallosGovernanceToken, cartallosGeneralToken]}).send({from: accounts[0], gas: 6721975, gasPrice: '20000000000'}).then(
+    let cartGenStake = new web3.eth.Contract(abi);
+    cartGenStake.deploy({data: bytecode, arguments: [accounts[0], accounts[0], cartallosGovernanceToken, cartallosGeneralToken]}).send({from: accounts[0], gas: 6721975, gasPrice: '20000000000'}).then(
         function(result){
             console.log(result.options.address);
         }
