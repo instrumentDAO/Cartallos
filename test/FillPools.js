@@ -71,10 +71,10 @@ module.exports = function(){
 
 
             //fill the cartallos governance pool
-            wBNB.methods.deposit().send({from: account, value: 20000000000000000000}).then(function(wBNBDeposit){
-                    wBNB.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('20')))).send({from: account}).then(function(approved){
-                        cartGov.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('10')))).send({from: account}).then(function(cgapp){
-                                uniswap.methods.addLiquidity(cartGovAddress, wBNBAddress, (wei2eth), (wei2eth), (2000000000000000), (2000000000000000), account, 1651311457).send({from: account, gas: 6721975, gasPrice: '20000000000'}).then( () => {
+            wBNB.methods.deposit().send({from: owner, value: 20000000000000000000}).then(function(wBNBDeposit){
+                    wBNB.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('20')))).send({from: owner}).then(function(approved){
+                        cartGov.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('10')))).send({from: owner}).then(function(cgapp){
+                                uniswap.methods.addLiquidity(cartGovAddress, wBNBAddress, (wei2eth), (wei2eth), (2000000000000000), (2000000000000000), owner, 1651311457).send({from: owner, gas: 6721975, gasPrice: '20000000000'}).then( () => {
                                     uniswapFactory.methods.getPair(cartGovAddress, wBNBAddress).call().then( (res) => {
                                         console.log("CART/BNB liquidity token: " + res);
                                     })
