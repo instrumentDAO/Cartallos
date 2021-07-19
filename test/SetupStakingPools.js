@@ -23,13 +23,13 @@ const BEP20ABI = BEP20Json['abi'];
 
 module.exports = async function(){
     let web3 = new Web3();
-    let farmingPeriod = 15780000; //6 months in seconds
+    let farmingPeriod = 6000;    //15780000; //6 months in seconds
     web3.setProvider(provider);
 
     let numPools = 4;
     let cartTotalSuppy = new web3.utils.BN("10000000000000000000000000"); //10 million tokens
     let cartForStakingDist = cartTotalSuppy.muln(4).divn(10); //40% for staking farming
-    let cartPerPool = web3.utils.fromWei(cartForStakingDist.divn(numPools));
+    let cartPerPool = cartForStakingDist.divn(numPools);
     console.log(cartPerPool);
 
 

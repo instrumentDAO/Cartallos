@@ -7,3 +7,5 @@ echo "minting index tokens"
 truffle exec ./test/mint.js
 echo "Filling index token pools"
 truffle exec ./test/FillCartGPool.js
+echo "Setting up staking pools"
+truffle exec test/SetupStakingPools.js
