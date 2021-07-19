@@ -23,6 +23,13 @@ module.exports = function(){
     let farmingPeriod = 15780000; //6 months in seconds
     web3.setProvider(provider);
 
+    let numPools = 4;
+    let cartTotalSuppy = new web3.utils.BN("10000000000000000000000000"); //10 million tokens
+    let cartForStakingDist = cartTotalSuppy.muln(4).divn(10); //40% for staking farming
+    let cartPerPool = web3.utils.fromWei(cartForStakingDist.divn(numPools));
+    console.log(cartPerPool);
+
+
     //stake carg earn
     let cartGovStake = new web3.eth.Contract(abi, cartStakeAddress);
     cartGovStake.methods.setRewardsDuration(farmingPeriod).send({from: accounts[0], gas: 6721975, gasPrice: '20000000000'});
