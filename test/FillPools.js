@@ -5,8 +5,8 @@ const fs = require('fs');
 const provider = new Web3.providers.HttpProvider('http://localhost:8545');
 
 const wBNBAddress = '0x6DFAFB92fafA78E82802fFA07CCCE1dcD05Ec9de';
-const eTHAddress = '0x54824f67455A05Cad7b0751c4715e46C2aa226C2';
-const bTCAddress = '0xe778f496CE179f3895Fb10E040E4dA85A31e2724';
+const bTCAddress = '0x54824f67455A05Cad7b0751c4715e46C2aa226C2';
+const eTHAddress = '0xe778f496CE179f3895Fb10E040E4dA85A31e2724';
 const cartGovAddress = '0x7907d0C11B358dd1229C9332D85fA22783658bD4';
 const uniswapAddress = '0x68eA183eDbfc146407af1672D2d1cc351c2fb5b8';
 const owner = '0x6a2B6283AD99b412b717564c068Ab8Bd97294AC4';
@@ -52,7 +52,6 @@ module.exports = function(){
                     wBNB.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('20')))).send({from: owner}).then(function(approved){
                         uniswap.methods.addLiquidity(eTHAddress, wBNBAddress, (wei2eth), (wei2eth), (2000000000000000), (2000000000000000), owner, 1651311457).send({from: owner, gas: 6721975, gasPrice: '20000000000'});
                         uniswap.methods.addLiquidity(bTCAddress, wBNBAddress, (wei2eth), (wei2eth), (2000000000000000), (2000000000000000), owner, 1651311457).send({from: owner, gas: 6721975, gasPrice: '20000000000'}).then(function(liquidityFilled){
-                            console.log(liquidityFilled);
                         })
                     })
                 })
