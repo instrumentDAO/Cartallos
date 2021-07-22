@@ -99,22 +99,17 @@ contract CartallosCore is BEP20 {
     function burn(
         uint256 amount,
         uint256 timeout,
-        uint256 minimumBNBtoReceive
+        uint256 minFromBTC,
+        uint256 minFromETH
     ) public {
         /*
         timeout is a unix timestamp of when to timeout the swaps
-        amount is the amount of cartalos pool token user wants to mint
-        minimumBNBtoReceive is the minimum amount of BNB the user must receive before reverting
+        amount is the amount of cartalos pool token user wants to burn
         */
 
         require(balanceOf(msg.sender) >= amount, "balance too low");
         uint256 devfee = amount / 1000;
         amount = amount.sub(devfee);
-
-        require(
-            minimumBNBtoReceive <= amount,
-            "Submitted minimumBNBtoReceive higher than amount submitted minus burn fee"
-        );
 
         require(
             transfer(feeAddress, devfee),
@@ -133,42 +128,17 @@ contract CartallosCore is BEP20 {
         uint256 ethToExchange = (assetPerCartallosToken[eth] * amount) /
             (ethUnits);
 
-        /*
-        use pancakeswap to calculate how much bnb is needed to swap for the requested amount of tokens
-
-        getAmountIns gives the cost in bnb you would need to produce a particular amount of tokens after the swap
-
-        */
-        uint256 bnbAmountFromBtc = uniswapRouter.getAmountsOut(
-            btcToExchange,
-            path
-        )[0];
-        path[0] = address(a_eth); //change the path array to path to eth
-        uint256 bnbAmountFromEth = uniswapRouter.getAmountsOut(
-            ethToExchange,
-            path
-        )[0];
-        path[0] = address(a_btc); //change the path array to path back to btc so further functions use it properly
-
-        require(
-            (bnbAmountFromBtc +
-                bnbAmountFromEth +
-                ((assetPerCartallosToken[wbnb] * amount) / ethUnits)) >=
-                minimumBNBtoReceive,
-            "Cart-Core:Burn::Slippage limit exceeded after swaps, is value too large?"
-        );
-
         btc.approve(UNISWAP_ROUTER_ADDRESS, btcToExchange);
         uint256[] memory btcResult = uniswapRouter.swapExactTokensForETH(
             btcToExchange,
-            bnbAmountFromBtc,
+            minFromBTC,
             path,
             msg.sender,
             timeout
         );
 
         require(
-            btcResult[0] == bnbAmountFromBtc,
+            btcResult[0] >= minFromBTC,
             "bnb not equal to bnb required"
         );
 
@@ -176,14 +146,14 @@ contract CartallosCore is BEP20 {
         path[0] = address(a_eth);
         uint256[] memory ethResult = uniswapRouter.swapExactTokensForETH(
             ethToExchange,
-            bnbAmountFromEth,
+            minFromETH,
             path,
             msg.sender,
             timeout
         );
 
         require(
-            ethResult[0] == bnbAmountFromEth,
+            ethResult[0] >= minFromETH,
             "bnb not equal to bnb required"
         );
 
