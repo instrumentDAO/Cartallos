@@ -44,9 +44,9 @@ contract("CartCore", async accounts => {
         var slippageTotal = new web3.utils.BN(slippageTimesAmount.divn(web3.utils.toBN(100)));
         var costPlusSlippage = slippageTotal.add(amountCost);
 
-        const mint = await core.mint(amount, 1652427671, { from: accounts[0], value: costPlusSlippage });
+        const mint = await core.mint(amount, 1652427671, { from: accounts[1], value: costPlusSlippage });
 
-        const balance = await core.balanceOf(accounts[0], { from: accounts[0] });
+        const balance = await core.balanceOf(accounts[1], { from: accounts[1] });
         expect(balance).to.eql(amount);
         const btcBal = await core.btcTotalBal();
         expect(btcBal).to.eql(btcPerToken);
@@ -73,23 +73,20 @@ contract("CartCore", async accounts => {
         var slippageTotalMint = new web3.utils.BN(slippageTimesAmountMint.divn(web3.utils.toBN(100)));
         var costPlusSlippage = slippageTotalMint.add(amountCost);
 
-        const mint = await core.mint(amount, 1652427671, { from: accounts[0], value: costPlusSlippage });
+        const mint = await core.mint(amount, 1652427671, { from: accounts[1], value: costPlusSlippage });
 
-        const startBalance = await web3.eth.getBalance(accounts[0]);
+        const startBalance = await web3.eth.getBalance(accounts[1]);
 
         var amountMinusDevFee = new web3.utils.BN(amount);
         var devFeeMul = amount.divn(new web3.utils.BN(1000));
         amountMinusDevFee = amountMinusDevFee.sub(devFeeMul);
-        console.log("amountMinusDevFee: " + amountMinusDevFee)
 
         const amountOutFromBtc = await uniswap.methods.getAmountsOut(btcPerToken, [wBNBAddress, bTCAddress]).call();
         const amountFromBtc = web3.utils.toBN(amountOutFromBtc[0]);
         const amountOutFromEth = await uniswap.methods.getAmountsOut(ethPerToken, [wBNBAddress, eTHAddress]).call();
         const amountFromEth = web3.utils.toBN(amountOutFromEth[0]);
         const amountToReceivePerToken = amountFromBtc.add(amountFromEth).add(wbnbPerToken);
-        console.log("amountToReceivePerToken: " + amountToReceivePerToken);
         const amountToReceive = ((amountMinusDevFee.mul(amountToReceivePerToken)).div(wei2eth));
-        console.log("amountToReceive: " + amountToReceive.toString());
 
         const btcExpected = (amountFromBtc.mul(amountMinusDevFee)).div(wei2eth);
         const ethExpected = (amountFromEth.mul(amountMinusDevFee)).div(wei2eth);
@@ -98,8 +95,8 @@ contract("CartCore", async accounts => {
         var btcExpectedWithSlippage = (slippage.mul(btcExpected)).div(wei2eth);
         var ethExpectedWithSlippage = (slippage.mul(ethExpected)).div(wei2eth);
 
-        const burned = await core.burn(amount.toString(), 1652427671, btcExpectedWithSlippage.toString(), ethExpectedWithSlippage.toString(), { from: accounts[0] });
-        const burnedBalance = await web3.eth.getBalance(accounts[0]);
+        const burned = await core.burn(amount.toString(), 1652427671, btcExpectedWithSlippage.toString(), ethExpectedWithSlippage.toString(), { from: accounts[1] });
+        const burnedBalance = await web3.eth.getBalance(accounts[1]);
         const balanceDifference = burnedBalance.sub(startBalance);
 
         var slippage = new web3.utils.BN(slippageNum);
@@ -130,22 +127,22 @@ contract("CartCore", async accounts => {
 
         var costOffset = amountCost.subn(1);
 
-        await expect(core.mint(amount, 1652427671, { from: accounts[0], value: costOffset })).to.be.rejectedWith(Error);
+        await expect(core.mint(amount, 1652427671, { from: accounts[1], value: costOffset })).to.be.rejectedWith(Error);
     });
 
     it("should fail on 0 amountDesired for mint", async () => {
         const core = await CartCore.deployed();
-        await expect(core.mint('0', 1652427671, { from: accounts[0], value: wei2eth })).to.be.rejectedWith(Error);
+        await expect(core.mint('0', 1652427671, { from: accounts[1], value: wei2eth })).to.be.rejectedWith(Error);
     });
 
     it("should fail on UINT256Max amountDesired and UINT256MAX for value for mint", async () => {
         const core = await CartCore.deployed();
-        await expect(core.mint(UINT256MAX, 1652427671, { from: accounts[0], value: UINT256MAX })).to.be.rejectedWith(Error);
+        await expect(core.mint(UINT256MAX, 1652427671, { from: accounts[1], value: UINT256MAX })).to.be.rejectedWith(Error);
     });
 
     it("should fail on UINT256Max + 1 amountDesired for mint", async () => {
         const core = await CartCore.deployed();
-        await expect(core.mint('115792089237316195423570985008687907853269984665640564039457584007913129639936', 1652427671, { from: accounts[0], value: wei2eth })).to.be.rejectedWith(Error);
+        await expect(core.mint('115792089237316195423570985008687907853269984665640564039457584007913129639936', 1652427671, { from: accounts[1], value: wei2eth })).to.be.rejectedWith(Error);
     });
 
     it("should fail on expired timestamp for mint", async () => {
@@ -169,10 +166,12 @@ contract("CartCore", async accounts => {
         var slippageTotal = new web3.utils.BN(slippageTimesAmount.divn(web3.utils.toBN(100)));
         var costPlusSlippage = slippageTotal.add(amountCost);
 
-        await expect(core.mint('0', 1606841117, { from: accounts[0], value: costPlusSlippage })).to.be.rejectedWith(Error);
+        await expect(core.mint('0', 1606841117, { from: accounts[1], value: costPlusSlippage })).to.be.rejectedWith(Error);
     });
-
- /*   it("should burn raw assets at correct rates", async () => {
+    
+    //Burn raw testing is broken
+    //Function
+    /*it("should burn raw assets at correct rates", async () => {
         const core = await CartCore.deployed();
         const eth = await ETH.deployed();
         const amount = wei2eth;
@@ -193,26 +192,36 @@ contract("CartCore", async accounts => {
         var slippageTotal = new web3.utils.BN(slippageTimesAmount.divn(web3.utils.toBN(100)));
         var costPlusSlippage = slippageTotal.add(amountCost);
 
-        const mint = await core.mint(amount, 1652427671, { from: accounts[0], value: costPlusSlippage });
+        const mint = await core.mint(amount, 1652427671, { from: accounts[1], value: costPlusSlippage });
 
-        const startETHBalance = await eth.balanceOf(accounts[0], { from: accounts[0] });
-        console.log(startETHBalance.toString());
+        const cartAmount = await core.balanceOf(accounts[1], { from: accounts[1] });
+        console.log("cartAmount: " + cartAmount.toString())
+
+        const startETHBalance = await eth.balanceOf(accounts[1], { from: accounts[1] });
+        console.log("startEthBal: " + startETHBalance.toString());
+
+        const startContractETHBal = await core.ethTotalBal();
+        console.log("startEthBal: " + startContractETHBal);
 
         var amountMinusDevFee = new web3.utils.BN(amount);
         var devFeeMul = amount.divn(new web3.utils.BN(1000));
         amountMinusDevFee = amountMinusDevFee.sub(devFeeMul);
-        console.log(amount.toString());
+        console.log("amountBurned: " + amount.toString());
 
 
-        const burned = await core.burnRaw(amount, { from: accounts[0] });
+        const burned = await core.burnRaw(amount, accounts[1], { from: accounts[1] });
 
-        const ethBal = await eth.balanceOf(accounts[0], { from: accounts[0] });
+        const ethBal = await eth.balanceOf(accounts[1], { from: accounts[1] });
         const ethIncrease = ethBal.sub(startETHBalance);
-        console.log(ethBal.toString());
-        console.log(ethIncrease.toString());
+        console.log("ethAfterBurning: " + ethBal.toString());
+        console.log("ethIncrease: " + ethIncrease.toString());
 
-        const ethIncreaseExpected = amountMinusDevFee.mul(ethPerToken).div(wei2eth);
-        console.log(ethIncreaseExpected.toString());
+        const endContractETHBal = await core.ethTotalBal();
+        console.log("endEthBal: " + endContractETHBal);
+
+
+        const ethIncreaseExpected = (amountMinusDevFee.mul(ethPerToken)).div(wei2eth);
+        console.log("ExpectedEthIncrease: " + ethIncreaseExpected.toString());
 
         expect(ethIncrease).to.eql(ethIncreaseExpected);
     });*/

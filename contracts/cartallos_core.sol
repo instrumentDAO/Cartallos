@@ -48,28 +48,49 @@ contract CartallosCore is BEP20 {
         address[] memory path = new address[](2);
         path[0] = uniswapRouter.WETH();
         path[1] = address(a_btc);
-        uint256 btcRequired = (assetPerCartallosToken[btc] * amount) / (ethUnits);
-        uint256 bnbNeededForBtc = uniswapRouter.getAmountsIn(btcRequired, path)[0];
+        uint256 btcRequired = (assetPerCartallosToken[btc] * amount) /
+            (ethUnits);
+        uint256 bnbNeededForBtc = uniswapRouter.getAmountsIn(btcRequired, path)[
+            0
+        ];
 
-
-        uint256 ethRequired = (assetPerCartallosToken[eth] * amount) / (ethUnits);
+        uint256 ethRequired = (assetPerCartallosToken[eth] * amount) /
+            (ethUnits);
         path[1] = address(a_eth); //change the path array to path to eth
-        uint256 bnbNeededForEth = uniswapRouter.getAmountsIn(ethRequired, path)[0];
+        uint256 bnbNeededForEth = uniswapRouter.getAmountsIn(ethRequired, path)[
+            0
+        ];
 
-        require((bnbNeededForBtc + bnbNeededForEth + 
-            ((assetPerCartallosToken[wbnb] * amount) / ethUnits)) 
-            <= msg.value, "Slippage limit exceeded after swaps, is value too low?");
+        require(
+            (bnbNeededForBtc +
+                bnbNeededForEth +
+                ((assetPerCartallosToken[wbnb] * amount) / ethUnits)) <=
+                msg.value,
+            "Slippage limit exceeded after swaps, is value too low?"
+        );
 
         path[1] = address(a_btc); //change the path array to path back to btc so further functions use it properly
-        uint256 btcResult = makeSwapMint(bnbNeededForBtc, btcRequired, timeout, path);
+        uint256 btcResult = makeSwapMint(
+            bnbNeededForBtc,
+            btcRequired,
+            timeout,
+            path
+        );
         path[1] = address(a_eth); //change the path array to path to eth
-        uint256 ethResult = makeSwapMint(bnbNeededForEth, ethRequired, timeout, path);
+        uint256 ethResult = makeSwapMint(
+            bnbNeededForEth,
+            ethRequired,
+            timeout,
+            path
+        );
 
         wbnbContract.deposit{
             value: ((assetPerCartallosToken[wbnb] * amount) / ethUnits)
         }();
 
-        uint256 bnbspent = btcResult.add(ethResult).add(((assetPerCartallosToken[wbnb] * amount) / ethUnits));
+        uint256 bnbspent = btcResult.add(ethResult).add(
+            ((assetPerCartallosToken[wbnb] * amount) / ethUnits)
+        );
         uint256 leftoverBNB = msg.value.sub(bnbspent);
         safeTransferFunds(msg.sender, leftoverBNB);
 
@@ -92,7 +113,10 @@ contract CartallosCore is BEP20 {
         uint256[] memory result = uniswapRouter.swapETHForExactTokens{
             value: bnbNeededForAsset
         }(amountRequired, path, address(this), timeout);
-        require(result[1] == amountRequired, "swap results not equal to amount required");
+        require(
+            result[1] == amountRequired,
+            "swap results not equal to amount required"
+        );
         return result[0];
     }
 
@@ -137,10 +161,7 @@ contract CartallosCore is BEP20 {
             timeout
         );
 
-        require(
-            btcResult[0] >= minFromBTC,
-            "bnb not equal to bnb required"
-        );
+        require(btcResult[0] >= minFromBTC, "bnb not equal to bnb required");
 
         eth.approve(UNISWAP_ROUTER_ADDRESS, ethToExchange);
         path[0] = address(a_eth);
@@ -152,10 +173,7 @@ contract CartallosCore is BEP20 {
             timeout
         );
 
-        require(
-            ethResult[0] >= minFromETH,
-            "bnb not equal to bnb required"
-        );
+        require(ethResult[0] >= minFromETH, "bnb not equal to bnb required");
 
         bool transferWbnb = wbnbContract.transfer(
             msg.sender,
@@ -164,35 +182,51 @@ contract CartallosCore is BEP20 {
         require(transferWbnb, "Transfer wbnb failed");
     }
 
-    function burnRaw(uint256 amount) public {
+    function burnRaw(uint256 amount, address sendTo) public {
         require(balanceOf(msg.sender) >= amount, "balance too low");
         uint256 devfee = amount / 1000;
         amount = amount.sub(devfee);
 
         require(
-            transfer(feeAddress, amount),
+            transfer(feeAddress, devfee),
             "Dev fees could not be transferred successfully"
         );
-        devFeesCollected += devfee;
 
         _burn(msg.sender, amount);
+        devFeesCollected += devfee;
 
-        bool btcResult = btc.transfer(
-            msg.sender,
-            (assetPerCartallosToken[btc] * amount) / ethUnits
+
+        uint256 btcToSend = (assetPerCartallosToken[btc] * amount) / (ethUnits);
+        uint256 ethToSend = (assetPerCartallosToken[eth] * amount) / (ethUnits);
+        uint256 wbnbToSend = (assetPerCartallosToken[wbnb] * amount) / (ethUnits);
+        require (btcToSend > 0, "sending 0 BTC");
+        require (ethToSend > 0, "sending 0 eth");
+        require (wbnbToSend > 0, "sending 0 bnb");
+
+
+        btc.approve(address(this), btcToSend);
+        bool btcResult = btc.transferFrom(
+            address(this),
+            sendTo,
+            btcToSend
         );
         require(btcResult, "Cart-Core: btc Could not be transferred");
-        bool ethResult = eth.transfer(
-            msg.sender,
-            (assetPerCartallosToken[eth] * amount) / ethUnits
+
+        eth.approve(address(this), ethToSend);
+        bool ethResult = eth.transferFrom(
+            address(this),
+            sendTo,
+            ethToSend
         );
         require(ethResult, "Cart-Core: eth could not be transferred");
-        bool wbnbResult = wbnb.transfer(
-            msg.sender,
-            (assetPerCartallosToken[wbnb] * amount) / ethUnits
+
+        wbnb.approve(address(this), wbnbToSend);
+        bool wbnbResult = wbnb.transferFrom(
+            address(this),
+            sendTo,
+            wbnbToSend
         );
         require(wbnbResult, "Cart-Core: wbnb could not be transferred");
-
     }
 
     function collectDevFunds(uint256 amount) public onlyOwner {
@@ -230,6 +264,9 @@ contract CartallosCore is BEP20 {
         );
     }
 
+    //---------------------------------------------------------------------------------------
+    // Balance owned by contract for each underlying token, for testing
+
     function btcTotalBal() external view returns (uint256) {
         return btc.balanceOf(address(this));
     }
@@ -244,7 +281,6 @@ contract CartallosCore is BEP20 {
 
     //---------------------------------------------------------------------------------------
     // Values of underlying tokens
-
 
     function btcPerToken() external view returns (uint256) {
         return assetPerCartallosToken[btc];
