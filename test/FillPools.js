@@ -5,8 +5,8 @@ const fs = require('fs');
 const provider = new Web3.providers.HttpProvider('http://localhost:8545');
 
 const wBNBAddress = '0x6DFAFB92fafA78E82802fFA07CCCE1dcD05Ec9de';
-const eTHAddress = '0x54824f67455A05Cad7b0751c4715e46C2aa226C2';
-const bTCAddress = '0xe778f496CE179f3895Fb10E040E4dA85A31e2724';
+const bTCAddress = '0x54824f67455A05Cad7b0751c4715e46C2aa226C2';
+const eTHAddress = '0xe778f496CE179f3895Fb10E040E4dA85A31e2724';
 const cartGovAddress = '0x7907d0C11B358dd1229C9332D85fA22783658bD4';
 const uniswapAddress = '0x68eA183eDbfc146407af1672D2d1cc351c2fb5b8';
 const uniswapFactoryAddress = '0x9D85A0F7F986013D5cA371CCf35730E77CfA22b2';
@@ -37,8 +37,8 @@ const cartallosAbi = cartallosJson['abi'];
 
 const wei2eth = web3.utils.toBN('1000000000000000000');
 
-module.exports = function(){
-    async function fillPools(callback){
+module.exports = function () {
+    async function fillPools(callback) {
         let web3 = new Web3();
         web3.setProvider(provider);
         wBNB = await new web3.eth.Contract(wBNBAbi, wBNBAddress);
@@ -49,42 +49,41 @@ module.exports = function(){
         uniswapFactory = await new web3.eth.Contract(uniswapFactoryAbi, uniswapFactoryAddress);
 
         // fill the pools for eth/bnb and btc/bnb
-        wBNB.methods.deposit().send({from: owner, value: 20000000000000000000}).then(function(wBNBDeposit){
-            eTH.methods.mint((wei2eth.mul(web3.utils.toBN('100')))).send({from: owner}).then(function(eTHMint){
-                bTC.methods.mint((wei2eth.mul(web3.utils.toBN('100')))).send({from: owner}).then(function(bTCMint){
-                    eTH.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('10')))).send({from: owner});
-                    bTC.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('10')))).send({from: owner});
-                    wBNB.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('20')))).send({from: owner}).then(function(approved){
-                        uniswap.methods.addLiquidity(eTHAddress, wBNBAddress, (wei2eth), (wei2eth), (2000000000000000), (2000000000000000), owner, 1651311457).send({from: owner, gas: 6721975, gasPrice: '20000000000'});
-                        uniswap.methods.addLiquidity(bTCAddress, wBNBAddress, (wei2eth), (wei2eth), (2000000000000000), (2000000000000000), owner, 1651311457).send({from: owner, gas: 6721975, gasPrice: '20000000000'}).then(function(liquidityFilled){
-                            uniswapFactory.methods.getPair(eTHAddress, wBNBAddress).call().then( (res) => {
+        wBNB.methods.deposit().send({ from: owner, value: 20000000000000000000 }).then(function (wBNBDeposit) {
+            eTH.methods.mint((wei2eth.mul(web3.utils.toBN('100')))).send({ from: owner }).then(function (eTHMint) {
+                bTC.methods.mint((wei2eth.mul(web3.utils.toBN('100')))).send({ from: owner }).then(function (bTCMint) {
+                    eTH.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('10')))).send({ from: owner });
+                    bTC.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('10')))).send({ from: owner });
+                    wBNB.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('20')))).send({ from: owner }).then(function (approved) {
+                        uniswap.methods.addLiquidity(eTHAddress, wBNBAddress, (wei2eth), (wei2eth), (2000000000000000), (2000000000000000), owner, 1651311457).send({ from: owner, gas: 6721975, gasPrice: '20000000000' });
+                        uniswap.methods.addLiquidity(bTCAddress, wBNBAddress, (wei2eth), (wei2eth), (2000000000000000), (2000000000000000), owner, 1651311457).send({ from: owner, gas: 6721975, gasPrice: '20000000000' }).then(function (liquidityFilled) {
+                            uniswapFactory.methods.getPair(eTHAddress, wBNBAddress).call().then((res) => {
                                 console.log("Eth/BNB liquidity token: " + res);
                             })
-                            uniswapFactory.methods.getPair(bTCAddress, wBNBAddress).call().then( (res) => {
+                            uniswapFactory.methods.getPair(bTCAddress, wBNBAddress).call().then((res) => {
                                 console.log("BTC/BNB liquidity token: " + res);
                             })
-                            console.log(liquidityFilled);
                         })
                     })
                 })
-                        })
+            })
 
 
             //fill the cartallos governance pool
-            wBNB.methods.deposit().send({from: owner, value: 20000000000000000000}).then(function(wBNBDeposit){
-                    wBNB.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('20')))).send({from: owner}).then(function(approved){
-                        cartGov.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('10')))).send({from: owner}).then(function(cgapp){
-                                uniswap.methods.addLiquidity(cartGovAddress, wBNBAddress, (wei2eth), (wei2eth), (2000000000000000), (2000000000000000), owner, 1651311457).send({from: owner, gas: 6721975, gasPrice: '20000000000'}).then( () => {
-                                    uniswapFactory.methods.getPair(cartGovAddress, wBNBAddress).call().then( (res) => {
-                                        console.log("CART/BNB liquidity token: " + res);
-                                    })
-                                });
+            wBNB.methods.deposit().send({ from: owner, value: 20000000000000000000 }).then(function (wBNBDeposit) {
+                wBNB.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('20')))).send({ from: owner }).then(function (approved) {
+                    cartGov.methods.approve(uniswapAddress, (wei2eth.mul(web3.utils.toBN('10')))).send({ from: owner }).then(function (cgapp) {
+                        uniswap.methods.addLiquidity(cartGovAddress, wBNBAddress, (wei2eth), (wei2eth), (2000000000000000), (2000000000000000), owner, 1651311457).send({ from: owner, gas: 6721975, gasPrice: '20000000000' }).then(() => {
+                            uniswapFactory.methods.getPair(cartGovAddress, wBNBAddress).call().then((res) => {
+                                console.log("CART/BNB liquidity token: " + res);
                             })
-                        })
+                        });
+                    })
                 })
-        }).catch(function(err){
-                console.log("error: " + err.message);
-            });
+            })
+        }).catch(function (err) {
+            console.log("error: " + err.message);
+        });
     }
     fillPools();
 }

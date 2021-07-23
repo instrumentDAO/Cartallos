@@ -6,8 +6,8 @@ const provider = new Web3.providers.HttpProvider('http://localhost:8545');
 
 const wBNBAddress = '0x6DFAFB92fafA78E82802fFA07CCCE1dcD05Ec9de';
 const eTHAddress = '0x54824f67455A05Cad7b0751c4715e46C2aa226C2';
-const bTCAddress = '0xe778f496CE179f3895Fb10E040E4dA85A31e2724';
-const uniswapAddress = '0x68eA183eDbfc146407af1672D2d1cc351c2fb5b8';
+const bTCAddress = '0x54824f67455A05Cad7b0751c4715e46C2aa226C2';
+const eTHAddress = '0xe778f496CE179f3895Fb10E040E4dA85A31e2724';
 const cartallosAddress = '0x51a255540d8c915eC9f846A00044B864Bbd672D9';
 const owner = '0x6a2B6283AD99b412b717564c068Ab8Bd97294AC4';
 const account = '0x3e6E59c45c65F4Da3be7fB8bf67eef54B84B287b';
