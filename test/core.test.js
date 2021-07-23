@@ -169,8 +169,8 @@ contract("CartCore", async accounts => {
         await expect(core.mint('0', 1606841117, { from: accounts[1], value: costPlusSlippage })).to.be.rejectedWith(Error);
     });
     
-    //Burn raw testing is broken
-    //Function
+    //Burn raw testing is broken, 
+    //for some reason eth.balanceOf is returning 0, while metamask shows eth having value
     /*it("should burn raw assets at correct rates", async () => {
         const core = await CartCore.deployed();
         const eth = await ETH.deployed();
