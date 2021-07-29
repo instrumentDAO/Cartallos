@@ -55,6 +55,22 @@ module.exports = {
       confirmations: 10,
       timeoutBlocks: 200,
       skipDryRun: true
+    },
+
+    matic: {
+      provider: () => new HDWalletProvider('mnemonic', `wss://rpc-mainnet.matic.quiknode.pro`),
+      network_id: 137,
+      confirmations: 10,
+      timeoutBlocks: 20000,
+      skipDryRun: true
+    },
+
+    bsc:{
+      provider: () => new HDWalletProvider('mnemonic', `https://bsc-dataseed1.binance.org/`),
+      network_id: 56,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
     }
     // Another network with more advanced options...
     // advanced: {

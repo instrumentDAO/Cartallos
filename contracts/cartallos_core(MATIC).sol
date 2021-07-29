@@ -4,41 +4,38 @@ pragma solidity =0.7.5;
 import "./BEP20/BEP20.sol";
 import "./BEP20/IBEP20.sol";
 import "./Interfaces/IUniswapV2Router02.sol";
-import "./Interfaces/IWBNB.sol";
+import "./Interfaces/IMATIC.sol";
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
-contract CartallosCore is BEP20 {
+contract CartallosCoreMATIC is BEP20 {
     using SafeMath for uint256;
 
     address internal constant UNISWAP_ROUTER_ADDRESS =
-        0x68eA183eDbfc146407af1672D2d1cc351c2fb5b8;
+        0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff;
     IUniswapV2Router02 public uniswapRouter;
-    IWBNB public wbnbContract;
+    IMATIC public wmaticContract;
 
-    address a_btc = 0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c;
-    address a_eth = 0x2170ed0880ac9a755fd29b2688956bd959f933f8;
-    address a_wbnb = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
-    address a_matic = 0x6DFAFB92fafA78E82802fFA07CCCE1dcD05Ec9de;
+    address a_btc = 0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6;
+    address a_eth = 0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619;
+    address a_wmatic = 0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270;
     address feeAddress = 0x93cC95b441b02c7E65d52018F1f7c8DfBdfDA03b;
 
     IBEP20 btc = IBEP20(a_btc);
     IBEP20 eth = IBEP20(a_eth);
-    IBEP20 matic = IBEP20(a_matic);
-    IBEP20 wbnb = IBEP20(a_wbnb);
+    IBEP20 wmatic = IBEP20(a_wmatic);
 
     uint256 devFeesCollected = 0;
     uint256 ethUnits = 1000000000000000000;
     mapping(IBEP20 => uint256) assetPerCartallosToken;
 
-    constructor() BEP20("Cartallos Core Index", "Cart-Core") {
+    constructor() BEP20("Cartallos Core Index", "Cart-Core-MATIC") {
         uniswapRouter = IUniswapV2Router02(UNISWAP_ROUTER_ADDRESS);
-        wbnbContract = IWBNB(a_wbnb);
+        wmaticContract = IMATIC(a_wmatic);
 
         assetPerCartallosToken[btc] = (82 * ethUnits) / 100000; //.00082 ethUnits of ETH ~ 25$ as of 7-21
         assetPerCartallosToken[eth] = (15 * ethUnits) / 1000; //.015 ethUnits of ETH ~ 25$ as of 7-21
-        assetPerCartallosToken[wbnb] = (9 * ethUnits) / 100; //.09 ethunits of BNB ~ 25$ as of 7-21
-        assetPerCartallosToken[matic] = 32 * ethUnits;
+        assetPerCartallosToken[wmatic] = 32 * ethUnits;
     }
 
     function mint(uint256 amount, uint256 timeout) public payable {
@@ -63,17 +60,10 @@ contract CartallosCore is BEP20 {
             0
         ];
 
-        uint256 maticRequired = (assetPerCartallosToken[matic] * amount) /
-            (ethUnits);
-        path[1] = address(a_matic); //change the path array to path to matic
-        uint256 bnbNeededForMatic = uniswapRouter.getAmountsIn(maticRequired, path)[
-            0
-        ];
-
         require(
             (bnbNeededForBtc +
-                bnbNeededForEth + bnbNeededForMatic + 
-                ((assetPerCartallosToken[wbnb] * amount) / ethUnits)) <=
+                bnbNeededForEth + 
+                ((assetPerCartallosToken[wmatic] * amount) / ethUnits)) <=
                 msg.value,
             "Slippage limit exceeded after swaps, is value too low?"
         );
@@ -93,20 +83,12 @@ contract CartallosCore is BEP20 {
             path
         );
 
-        path[1] = address(a_matic); //change the path array to path to eth
-        uint256 maticResult = makeSwapMint(
-            bnbNeededForMatic,
-            maticRequired,
-            timeout,
-            path
-        );
-
-        wbnbContract.deposit{
-            value: ((assetPerCartallosToken[wbnb] * amount) / ethUnits)
+        wmaticContract.deposit{
+            value: ((assetPerCartallosToken[wmatic] * amount) / ethUnits)
         }();
 
-        uint256 bnbspent = btcResult.add(ethResult).add(maticResult).add(
-            ((assetPerCartallosToken[wbnb] * amount) / ethUnits)
+        uint256 bnbspent = btcResult.add(ethResult).add(
+            ((assetPerCartallosToken[wmatic] * amount) / ethUnits)
         );
         uint256 leftoverBNB = msg.value.sub(bnbspent);
         safeTransferFunds(msg.sender, leftoverBNB);
@@ -141,9 +123,8 @@ contract CartallosCore is BEP20 {
         uint256 amount,
         uint256 timeout,
         uint256 minFromBTC,
-        uint256 minFromETH,
-        uint256 minFromMATIC
-    ) public {
+        uint256 minFromETH
+        ) public {
         /*
         timeout is a unix timestamp of when to timeout the swaps
         amount is the amount of cartalos pool token user wants to burn
@@ -169,8 +150,6 @@ contract CartallosCore is BEP20 {
             (ethUnits);
         uint256 ethToExchange = (assetPerCartallosToken[eth] * amount) /
             (ethUnits);
-        uint256 maticToExchange = (assetPerCartallosToken[matic] * amount) /
-            (ethUnits);
 
         btc.approve(UNISWAP_ROUTER_ADDRESS, btcToExchange);
         makeSwapBurn( btcToExchange, minFromBTC, path, msg.sender, timeout);
@@ -179,16 +158,11 @@ contract CartallosCore is BEP20 {
         path[0] = address(a_eth);
         makeSwapBurn( ethToExchange, minFromETH, path, msg.sender, timeout);
 
-        matic.approve(UNISWAP_ROUTER_ADDRESS, maticToExchange);
-        path[0] = address(a_matic);
-        makeSwapBurn( maticToExchange, minFromMATIC, path, msg.sender, timeout);
-
-
-        bool transferWbnb = wbnbContract.transfer(
+        bool transferWmatic = wmaticContract.transfer(
             msg.sender,
-            ((assetPerCartallosToken[wbnb] * amount) / ethUnits)
+            ((assetPerCartallosToken[wmatic] * amount) / ethUnits)
         );
-        require(transferWbnb, "Transfer wbnb failed");
+        require(transferWmatic, "Transfer wmatic failed");
     }
 
     function makeSwapBurn(
@@ -213,7 +187,7 @@ contract CartallosCore is BEP20 {
             timeout
         );
 
-        require(result[0] >= minFromAsset, "bnb not equal to bnb required for one of the burned assets");
+        require(result[0] >= minFromAsset, "output not equal to output required for one of the burned assets");
     }
 
     function burnRaw(uint256 amount, address sendTo) public {
@@ -232,12 +206,10 @@ contract CartallosCore is BEP20 {
 
         uint256 btcToSend = (assetPerCartallosToken[btc] * amount) / (ethUnits);
         uint256 ethToSend = (assetPerCartallosToken[eth] * amount) / (ethUnits);
-        uint256 wbnbToSend = (assetPerCartallosToken[wbnb] * amount) / (ethUnits);
-        uint256 maticToSend = (assetPerCartallosToken[matic] * amount) / (ethUnits);
+        uint256 maticToSend = (assetPerCartallosToken[wmatic] * amount) / (ethUnits);
         require (btcToSend > 0, "sending 0 BTC");
         require (ethToSend > 0, "sending 0 eth");
-        require (wbnbToSend > 0, "sending 0 bnb");
-        require (maticToSend > 0, "sending 0 matic");
+        require (maticToSend > 0, "sending 0 wmatic");
 
 
 
@@ -257,21 +229,13 @@ contract CartallosCore is BEP20 {
         );
         require(ethResult, "Cart-Core: eth could not be transferred");
 
-        wbnb.approve(address(this), wbnbToSend);
-        bool wbnbResult = wbnb.transferFrom(
-            address(this),
-            sendTo,
-            wbnbToSend
-        );
-        require(wbnbResult, "Cart-Core: wbnb could not be transferred");
-
-        matic.approve(address(this), maticToSend);
-        bool maticResult = matic.transferFrom(
+        wmatic.approve(address(this), maticToSend);
+        bool maticResult = wmatic.transferFrom(
             address(this),
             sendTo,
             maticToSend
         );
-        require(maticResult, "Cart-Core: matic could not be transferred");
+        require(maticResult, "Cart-Core: wmatic could not be transferred");
     }
 
     function collectDevFunds(uint256 amount) public onlyOwner {
@@ -290,16 +254,11 @@ contract CartallosCore is BEP20 {
             (assetPerCartallosToken[eth] * amount) / ethUnits
         );
         require(ethResult, "Cart-Core: eth could not be transferred");
-        bool wbnbResult = wbnb.transfer(
+        bool maticResult = wmatic.transfer(
             msg.sender,
-            (assetPerCartallosToken[wbnb] * amount) / ethUnits
+            (assetPerCartallosToken[wmatic] * amount) / ethUnits
         );
-        require(wbnbResult, "Cart-Core: wbnb could not be transferred");
-        bool maticResult = matic.transfer(
-            msg.sender,
-            (assetPerCartallosToken[matic] * amount) / ethUnits
-        );
-        require(maticResult, "Cart-Core: matic could not be transferred");
+        require(maticResult, "Cart-Core: wmatic could not be transferred");
     }
     
     function transferFeeAddress(address newFeeAddress) public onlyOwner {
@@ -329,12 +288,8 @@ contract CartallosCore is BEP20 {
     function ethPerToken() external view returns (uint256) {
         return assetPerCartallosToken[eth];
     }
-
-    function wbnbPerToken() external view returns (uint256) {
-        return assetPerCartallosToken[wbnb];
-    }
     
     function maticPerToken() external view returns (uint256) {
-        return assetPerCartallosToken[matic];
+        return assetPerCartallosToken[wmatic];
     }
 }
