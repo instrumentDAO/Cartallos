@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e694c6dd-d12e-4930-9883-a43841b21a26" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/contracts/Presale.sol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setupContracts.sh" beforeDir="false" afterPath="$PROJECT_DIR$/setupContracts.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/SetupStakingPools.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/SetupStakingPools.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,11 +39,27 @@
       <workItem from="1626478454452" duration="613000" />
       <workItem from="1626493078630" duration="15240000" />
       <workItem from="1626650038311" duration="117000" />
-      <workItem from="1626650186002" duration="10402000" />
+      <workItem from="1626650186002" duration="11629000" />
+      <workItem from="1626675488222" duration="4601000" />
+      <workItem from="1626861991287" duration="1217000" />
+      <workItem from="1627256617647" duration="2089000" />
+      <workItem from="1627433584772" duration="2056000" />
+      <workItem from="1627798209331" duration="1308000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

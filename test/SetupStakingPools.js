@@ -23,7 +23,7 @@ const BEP20ABI = BEP20Json['abi'];
 
 module.exports = async function(){
     let web3 = new Web3();
-    let farmingPeriod = 6000;    //15780000; //6 months in seconds
+    let farmingPeriod = 600000;    //15780000; //6 months in seconds
     web3.setProvider(provider);
 
     let numPools = 4;
@@ -76,3 +76,4 @@ module.exports = async function(){
 
 
 };
+
