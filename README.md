@@ -6,16 +6,14 @@ Contracts for cartallos
     docker build -t cartallos .
     docker run -p 8545:8545 -d --name cartallos cartallos
     docker exec -it cartallos ganache-cli -s cow
-    docker exec -it cartallos truffle deploy
-    docker exec -it cartallos truffle exec ./test/FillPools.js
+    docker exec -it cartallos ./setup.sh
 
 # Run Without Docker, with ganache-cli
     npm install truffle -g
     npm install -g ganache-cli
     npm install @openzeppelin/contracts
     ganache-cli -s cow
-    truffle deploy
-    truffle exec ./test/FillPools.js
+    ./setup.sh
 
 # Run Without Docker, with Ganache GUI
     npm install truffle -g
@@ -27,7 +25,7 @@ At this point run ganache GUI with the following mnemonic:
 Set the port to 8545, and run the following commands
 
     truffle deploy
-    truffle exec ./test/FillPools.js
+    ./setup.sh
 
 The web3 service will then be running on 127.0.0.1:8545
 
