@@ -29,3 +29,5 @@ Set the port to 8545, and run the following commands
 
 The web3 service will then be running on 127.0.0.1:8545
 
+#To run test scripts
+    truffle test ./test/core.test.js
