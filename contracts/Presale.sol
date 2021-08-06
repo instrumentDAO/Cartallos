@@ -6,22 +6,25 @@ pragma solidity ^0.7.5;
 import "./BEP20/OpenZeppelinContracts/Context.sol";
 import "./BEP20/OpenZeppelinContracts/IERC20.sol";
 import "./BEP20/OpenZeppelinContracts/Ownable.sol";
+import "./BEP20/OpenZeppelinContracts/ERC20.sol";
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 
-
-contract Presale is Ownable {
+contract Presale is Ownable, ERC20 {
     using SafeMath for uint256;
     IERC20 saleToken;
     uint256 saleRatioTimesEthUnits; //sale price is
     uint256 ethUnits = 1000000000000000000;
     uint256 endDate = 0;
+    uint256 saleAmount;
+    bool exchangeOpen = false;
 
 
-    constructor (address sale_Token, uint256 sale_Price) {
+    constructor (address sale_Token, uint256 sale_Price, uint256 sale_Amount) ERC20("CART Presale", "CRTP"){
         saleToken = IERC20(sale_Token);
         saleRatioTimesEthUnits = sale_Price;
+        saleAmount = sale_Amount;
     }
 
 
@@ -47,13 +50,28 @@ contract Presale is Ownable {
         saleToken.transfer(owner(), saleToken.balanceOf(address(this)));
     }
 
+    function openExchaning(bool isOpen) public onlyOwner{
+        exchangeOpen = isOpen;
+    }
+
 
     function buyPresaleToken(uint256 amount) public payable{
-        require(saleToken.balanceOf(address(this)) >= amount, "Not Enough Presale Tokens Remain");
+        require(totalSupply() + amount <= saleAmount, "There are not enough presale tokens left for that purchase amount");
         require(msg.value ==  (amount * saleRatioTimesEthUnits) / ethUnits, "Incorrect Message Value Sent" );
         require(block.timestamp <= endDate, "presale is either over or has not started");
-        saleToken.transfer(msg.sender, amount);
+        _mint(msg.sender, amount);
     }
+
+
+    //exchanges all of the users presale tokens for the actual token. Requires exchanging to be open.
+    function exchangeForSaleToken() public{
+        require(exchangeOpen);
+        uint256 userBal = balanceOf(msg.sender);
+        _burn(msg.sender, userBal);
+        saleToken.transfer(msg.sender, userBal);
+
+    }
+
 
 
     function collectFunds() public onlyOwner{
