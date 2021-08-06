@@ -1,8 +1,9 @@
 const Presale = artifacts.require("Presale");
 const CartGovTokenAddress = "0x7907d0C11B358dd1229C9332D85fA22783658bD4";
 const PriceRatioOverEthUnitsOfPresale = "500000000000000000"; // .5 eth/bnb/matic per 1 CART purchased
+const presaleTokensWeiToSell = "550000000000000000000000"; // 550k tokens
 
 module.exports = function (deployer) {
-    deployer.deploy(Presale, CartGovTokenAddress, PriceRatioOverEthUnitsOfPresale);
+    deployer.deploy(Presale, CartGovTokenAddress, PriceRatioOverEthUnitsOfPresale, presaleTokensWeiToSell);
 };
 
