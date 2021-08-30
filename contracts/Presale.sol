@@ -21,7 +21,14 @@ contract Presale is Ownable, ERC20 {
     bool exchangeOpen = false;
 
 
-    constructor (address sale_Token, uint256 sale_Price, uint256 sale_Amount) ERC20("CART Presale", "CRTP"){
+    constructor (
+        address sale_Token,
+        uint256 sale_Price,
+        uint256 sale_Amount)
+    ERC20(
+        "CART Presale",
+            "CRTP")
+    {
         saleToken = IERC20(sale_Token);
         saleRatioTimesEthUnits = sale_Price;
         saleAmount = sale_Amount;
@@ -45,36 +52,52 @@ contract Presale is Ownable, ERC20 {
 
 
     function endPresale() public onlyOwner{
-        require(block.timestamp > endDate);
+        require(
+            block.timestamp > endDate,
+            "Presale time is not over"
+        );
         collectFunds();
-        saleToken.transfer(owner(), saleToken.balanceOf(address(this)));
+        saleToken.transfer(
+            owner(),
+            saleToken.balanceOf(address(this))
+        );
     }
 
-    function openExchaning(bool isOpen) public onlyOwner{
+    function openExchange(bool isOpen) public onlyOwner {
         exchangeOpen = isOpen;
     }
 
-
-    function buyPresaleToken(uint256 amount) public payable{
-        require(totalSupply() + amount <= saleAmount, "There are not enough presale tokens left for that purchase amount");
-        require(msg.value ==  (amount * saleRatioTimesEthUnits) / ethUnits, "Incorrect Message Value Sent" );
-        require(block.timestamp <= endDate, "presale is either over or has not started");
-        _mint(msg.sender, amount);
+    function buyPresaleToken() public payable{
+        uint256 tokensToBuy = (msg.value * ethUnits) / saleRatioTimesEthUnits;
+        require(
+            totalSupply() + tokensToBuy <= saleAmount,
+            "There are not enough presale tokens left for that purchase amount"
+        );
+        require(
+            block.timestamp <= endDate,
+            "presale is either over or has not started"
+        );
+        _mint(
+            msg.sender,
+            tokensToBuy
+        );
     }
 
-
     //exchanges all of the users presale tokens for the actual token. Requires exchanging to be open.
-    function exchangeForSaleToken() public{
+    function exchangeForSaleToken() public {
         require(exchangeOpen);
         uint256 userBal = balanceOf(msg.sender);
-        _burn(msg.sender, userBal);
+        _burn(
+            msg.sender,
+            userBal
+        );
         saleToken.transfer(msg.sender, userBal);
 
     }
 
-
-
     function collectFunds() public onlyOwner{
-        payable(owner()).transfer(address(this).balance);
+        payable(owner()).transfer(
+            address(this).balance
+        );
     }
 }
