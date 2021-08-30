@@ -13,12 +13,12 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 
 contract Presale is Ownable, ERC20 {
     using SafeMath for uint256;
-    IERC20 saleToken;
-    uint256 saleRatioTimesEthUnits; //sale price is
+    IERC20 public saleToken;
+    uint256 public saleRatioTimesEthUnits; //sale price is
     uint256 ethUnits = 1000000000000000000;
-    uint256 endDate = 0;
-    uint256 saleAmount;
-    bool exchangeOpen = false;
+    uint256 public endDate = 0;
+    uint256 public saleAmount;
+    bool public exchangeOpen = false;
 
 
     constructor (
